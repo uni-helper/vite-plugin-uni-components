@@ -47,4 +47,3 @@ export default function VitePluginComponents(options: Options = {}): Plugin {
 
 export * from './types'
 export { camelCase, pascalCase, kebabCase } from './utils'
-// export * from './resolvers'

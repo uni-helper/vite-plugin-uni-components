@@ -1,6 +1,34 @@
-# vite-plugin-uni-components
+# @uni-helper/vite-plugin-uni-components
 
-[![NPM version](https://img.shields.io/npm/v/vite-plugin-uni-components?color=a1b858&label=)](https://www.npmjs.com/package/vite-plugin-uni-components)
+Forked from [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and modified to adapt UniApp.
+
+[![NPM version](https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?color=a1b858&label=)](https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components)
+
+## Install
+
+```bash
+pnpm i -D @uni-helper/vite-plugin-uni-components
+```
+
+## Usage
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import Uni from '@dcloudio/vite-plugin-uni'
+import Components from '@uni-helper/vite-plugin-uni-components'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    // make sure put it before `Uni()`
+    Components(),
+    Uni(),
+  ],
+})
+```
+
+see more in [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components#installation)
 
 ## License
 

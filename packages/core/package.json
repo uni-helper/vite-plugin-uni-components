@@ -1,18 +1,16 @@
 {
-  "name": "vite-plugin-uni-components",
+  "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
   "version": "0.0.2",
   "packageManager": "pnpm@7.2.1",
   "description": "",
-  "author": "Neil Lee <zguolee@foxmail.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/zguolee",
-  "homepage": "https://github.com/zguolee/vite-plugin-uni-components#readme",
+  "homepage": "https://github.com/uni-helper/vite-plugin-uni-components#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zguolee/vite-plugin-uni-components.git"
+    "url": "git+https://github.com/uni-helper/vite-plugin-uni-components.git"
   },
-  "bugs": "https://github.com/zguolee/vite-plugin-uni-components/issues",
+  "bugs": "https://github.com/uni-helper/vite-plugin-uni-components/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -20,13 +18,7 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
-    },
-    "./resolvers": {
-      "types": "./dist/resolvers.d.ts",
-      "require": "./dist/resolvers.cjs",
-      "import": "./dist/resolvers.mjs"
-    },
-    "./*": "./*"
+    }
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -50,13 +42,13 @@
     "resolve": "^1.22.1"
   },
   "devDependencies": {
-    "@babel/parser": "^7.21.1",
-    "@babel/types": "^7.21.0",
+    "@babel/parser": "^7.21.2",
+    "@babel/types": "^7.21.2",
     "@types/debug": "^4.1.7",
     "@types/minimatch": "^5.1.2",
-    "@types/node": "^18.14.0",
+    "@types/node": "^18.14.1",
     "@types/resolve": "^1.20.2",
-    "bumpp": "^8.2.1",
+    "bumpp": "^9.0.0",
     "esno": "^0.16.3",
     "estree-walker": "^3.0.3",
     "pathe": "^1.1.0",

@@ -5,7 +5,6 @@ import { notNullish, slash } from '@antfu/utils'
 import type { ComponentInfo, Options } from './types'
 import type { Context } from './context'
 import { getTransformedPath } from './utils'
-import { resolveTypeImports } from './type-imports/detect'
 
 const multilineCommentsRE = /\/\*.*?\*\//gms
 const singlelineCommentsRE = /\/\/.*$/gm
@@ -49,7 +48,8 @@ function stringifyComponentInfo(filepath: string, { from: path, as: name, name: 
   const related = isAbsolute(path)
     ? `./${relative(dirname(filepath), path)}`
     : path
-  const entry = `typeof import('${slash(related)}')['${importName || 'default'}']`
+  // const entry = `typeof import('${slash(related)}')['${importName || 'default'}']`
+  const entry = `typeof import('${slash(related)}')['default']`
   return [name, entry]
 }
 
@@ -76,7 +76,6 @@ export function getDeclarationImports(ctx: Context, filepath: string): Declarati
       ...ctx.componentNameMap,
       ...ctx.componentCustomMap,
     }),
-    ...resolveTypeImports(ctx.options.types),
   ], ctx.options.importPathTransform)
 
   const directive = stringifyComponentsInfo(

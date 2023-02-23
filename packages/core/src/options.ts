@@ -2,7 +2,6 @@ import { join, resolve } from 'path'
 import { slash, toArray } from '@antfu/utils'
 import { getPackageInfoSync, isPackageExists } from 'local-pkg'
 import type { ComponentResolver, ComponentResolverObject, Options, ResolvedOptions } from './types'
-import { detectTypeImports } from './type-imports/detect'
 
 export const defaultOptions: Omit<Required<Options>, 'include' | 'exclude' | 'transformer' | 'globs' | 'directives' | 'types' | 'version'> = {
   dirs: 'src/components',
@@ -60,8 +59,6 @@ export function resolveOptions(options: Options, root: string): ResolvedOptions 
         : 'components.d.ts',
     )
 
-  if (!resolved.types && resolved.dts)
-    resolved.types = detectTypeImports()
   resolved.types = resolved.types || []
 
   resolved.root = root

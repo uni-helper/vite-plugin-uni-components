@@ -9,7 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AButton: typeof import('ano-ui/components/AButton/AButton.vue')['AButton']
+    AButton: typeof import('ano-ui/components/AButton/AButton.vue')['default']
     Book: typeof import('./src/components/book/index.vue')['default']
     ComponentA: typeof import('./src/components/ComponentA.vue')['default']
     ComponentAsync: typeof import('./src/components/ComponentAsync.vue')['default']
@@ -17,7 +17,5 @@ declare module '@vue/runtime-core' {
     ComponentC: typeof import('./src/components/component-c.vue')['default']
     ComponentD: typeof import('./src/components/ComponentD.vue')['default']
     Recursive: typeof import('./src/components/Recursive.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
   }
 }

@@ -1,29 +1,25 @@
 import { resolve } from 'path'
-import type { UserConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import Components from 'vite-plugin-uni-components'
-import { AnoResolver } from 'vite-plugin-uni-components/resolvers'
+import { defineConfig } from 'vite'
+import Uni from '@dcloudio/vite-plugin-uni'
+import Components from '@uni-helper/vite-plugin-uni-components'
+import { AnoResolver } from 'ano-ui'
 import Inspect from 'vite-plugin-inspect'
 
-const config: UserConfig = {
+// https://vitejs.dev/config/
+export default defineConfig({
   resolve: {
     alias: {
       '/~/': `${resolve(__dirname, 'src')}/`,
     },
   },
   plugins: [
-    Vue(),
-    Inspect(),
     Components({
       directoryAsNamespace: true,
       dts: true,
       globalNamespaces: ['global'],
       resolvers: [AnoResolver()],
     }),
+    Uni(),
+    Inspect(),
   ],
-  build: {
-    sourcemap: true,
-  },
-}
-
-export default config
+})

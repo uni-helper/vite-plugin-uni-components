@@ -1,0 +1,160 @@
+// Vitest Snapshot v1
+
+exports[`search > should with namespace & collapse 1`] = `
+[
+  {
+    "as": "Avatar",
+    "from": "src/components/global/avatar.vue",
+  },
+  {
+    "as": "Book",
+    "from": "src/components/book/index.vue",
+  },
+  {
+    "as": "CollapseFolderAndComponentFromRoot",
+    "from": "src/components/collapse/collapseFolder/CollapseFolderAndComponentFromRoot.vue",
+  },
+  {
+    "as": "CollapseFolderAndComponentPartially",
+    "from": "src/components/collapse/collapseFolder/FolderAndComponentPartially.vue",
+  },
+  {
+    "as": "ComponentA",
+    "from": "src/components/ComponentA.vue",
+  },
+  {
+    "as": "ComponentAsync",
+    "from": "src/components/ComponentAsync.vue",
+  },
+  {
+    "as": "ComponentB",
+    "from": "src/components/ComponentB.vue",
+  },
+  {
+    "as": "ComponentC",
+    "from": "src/components/component-c.vue",
+  },
+  {
+    "as": "ComponentD",
+    "from": "src/components/ComponentD.vue",
+  },
+  {
+    "as": "Recursive",
+    "from": "src/components/Recursive.vue",
+  },
+  {
+    "as": "UiButton",
+    "from": "src/components/ui/button.vue",
+  },
+  {
+    "as": "UiNestedCheckbox",
+    "from": "src/components/ui/nested/checkbox.vue",
+  },
+]
+`;
+
+exports[`search > should with namespace 1`] = `
+[
+  {
+    "as": "Avatar",
+    "from": "src/components/global/avatar.vue",
+  },
+  {
+    "as": "Book",
+    "from": "src/components/book/index.vue",
+  },
+  {
+    "as": "CollapseCollapseFolderCollapseFolderAndComponentFromRoot",
+    "from": "src/components/collapse/collapseFolder/CollapseFolderAndComponentFromRoot.vue",
+  },
+  {
+    "as": "CollapseCollapseFolderFolderAndComponentPartially",
+    "from": "src/components/collapse/collapseFolder/FolderAndComponentPartially.vue",
+  },
+  {
+    "as": "ComponentA",
+    "from": "src/components/ComponentA.vue",
+  },
+  {
+    "as": "ComponentAsync",
+    "from": "src/components/ComponentAsync.vue",
+  },
+  {
+    "as": "ComponentB",
+    "from": "src/components/ComponentB.vue",
+  },
+  {
+    "as": "ComponentC",
+    "from": "src/components/component-c.vue",
+  },
+  {
+    "as": "ComponentD",
+    "from": "src/components/ComponentD.vue",
+  },
+  {
+    "as": "Recursive",
+    "from": "src/components/Recursive.vue",
+  },
+  {
+    "as": "UiButton",
+    "from": "src/components/ui/button.vue",
+  },
+  {
+    "as": "UiNestedCheckbox",
+    "from": "src/components/ui/nested/checkbox.vue",
+  },
+]
+`;
+
+exports[`search > should work 1`] = `
+[
+  {
+    "as": "Avatar",
+    "from": "src/components/global/avatar.vue",
+  },
+  {
+    "as": "Book",
+    "from": "src/components/book/index.vue",
+  },
+  {
+    "as": "Button",
+    "from": "src/components/ui/button.vue",
+  },
+  {
+    "as": "Checkbox",
+    "from": "src/components/ui/nested/checkbox.vue",
+  },
+  {
+    "as": "CollapseFolderAndComponentFromRoot",
+    "from": "src/components/collapse/collapseFolder/CollapseFolderAndComponentFromRoot.vue",
+  },
+  {
+    "as": "ComponentA",
+    "from": "src/components/ComponentA.vue",
+  },
+  {
+    "as": "ComponentAsync",
+    "from": "src/components/ComponentAsync.vue",
+  },
+  {
+    "as": "ComponentB",
+    "from": "src/components/ComponentB.vue",
+  },
+  {
+    "as": "ComponentC",
+    "from": "src/components/component-c.vue",
+  },
+  {
+    "as": "ComponentD",
+    "from": "src/components/ComponentD.vue",
+  },
+  {
+    "as": "FolderAndComponentPartially",
+    "from": "src/components/collapse/collapseFolder/FolderAndComponentPartially.vue",
+  },
+  {
+    "as": "Recursive",
+    "from": "src/components/Recursive.vue",
+  },
+]
+`;

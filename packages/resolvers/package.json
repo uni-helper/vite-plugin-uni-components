@@ -1,0 +1,38 @@
+{
+  "name": "vite-plugin-uni-components-resolvers",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@7.2.1",
+  "description": "",
+  "author": "Neil Lee <zguolee@foxmail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/zguolee",
+  "homepage": "https://github.com/zguolee/vite-plugin-uni-components#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zguolee/vite-plugin-uni-components.git"
+  },
+  "bugs": "https://github.com/zguolee/vite-plugin-uni-components/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
+  "devDependencies": {
+    "vite-plugin-uni-components": "workspace:*"
+  }
+}

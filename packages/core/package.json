@@ -25,37 +25,44 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "stub": "pnpm -r --filter=./packages/* --parallel run stub",
-    "dev": "pnpm stub",
-    "build": "rimraf packages/*/dist && pnpm -r --filter=./packages/* run build && pnpm -r run build-post",
-    "release": "bumpp package.json packages/**/package.json",
-    "example:build": "npm -C examples/vite-vue3 run build",
-    "example:dev": "npm -C examples/vite-vue3 run dev",
-    "prepublishOnly": "nr build",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "nr lint --fix"
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
+  "dependencies": {
+    "@antfu/utils": "^0.7.2",
+    "@rollup/pluginutils": "^5.0.2",
+    "chokidar": "^3.5.3",
+    "debug": "^4.3.4",
+    "fast-glob": "^3.2.12",
+    "local-pkg": "^0.4.3",
+    "magic-string": "^0.29.0",
+    "minimatch": "^6.2.0",
+    "resolve": "^1.22.1",
+    "unplugin": "^1.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.2",
+    "@babel/parser": "^7.20.15",
+    "@babel/types": "^7.20.7",
+    "@types/debug": "^4.1.7",
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^18.14.0",
+    "@types/resolve": "^1.20.2",
     "bumpp": "^8.2.1",
     "eslint": "^8.34.0",
+    "esno": "^0.16.3",
+    "estree-walker": "^3.0.3",
+    "pathe": "^1.1.0",
+    "rimraf": "^4.1.2",
+    "rollup": "^2.51.2",
     "typescript": "^4.9.5",
     "unbuild": "^1.1.2",
     "vite": "^4.1.4",
-    "vitest": "^0.28.5"
+    "vitest": "^0.28.5",
+    "vue": "3.2.45"
   }
 }

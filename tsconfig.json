@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2017",
     "module": "esnext",
     "lib": ["esnext"],
     "moduleResolution": "node",
@@ -8,7 +8,6 @@
     "strict": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true
+    "jsx": "preserve"
   }
 }

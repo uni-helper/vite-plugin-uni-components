@@ -28,6 +28,17 @@ export default defineConfig({
 })
 ```
 
+## Component type prompt
+
+If you use `pnpm`, please create a `.npmrc` file in root, see [issue](https://github.com/antfu/unplugin-vue-components/issues/389).
+
+```
+// .npmrc
+public-hoist-pattern[]=@vue*
+// or 
+// shamefully-hoist = true
+```
+
 see more in [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components#installation)
 
 ## License

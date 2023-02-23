@@ -2,6 +2,7 @@
   "name": "@vite-plugin-uni-components/monorepo",
   "version": "0.0.1",
   "private": true,
+  "packageManager": "pnpm@7.2.1",
   "scripts": {
     "stub": "pnpm -r --filter=./packages/* --parallel run stub",
     "dev": "pnpm stub",

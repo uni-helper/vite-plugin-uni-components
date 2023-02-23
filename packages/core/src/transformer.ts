@@ -1,6 +1,6 @@
 import Debug from 'debug'
 import MagicString from 'magic-string'
-import type { TransformResult } from 'unplugin'
+import type { TransformResult } from 'rollup'
 import type { SupportedTransformer, Transformer } from './types'
 import { DISABLE_COMMENT } from './constants'
 import type { Context } from './context'

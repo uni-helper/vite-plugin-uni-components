@@ -5,7 +5,7 @@ import { shouldTransform } from './utils'
 import type { Options } from './types'
 import { Context } from './context'
 
-function VitePluginComponents(options: Options = {}): Plugin {
+export default function VitePluginComponents(options: Options = {}): Plugin {
   const ctx: Context = new Context(options)
 
   return {
@@ -46,7 +46,5 @@ function VitePluginComponents(options: Options = {}): Plugin {
 }
 
 export * from './types'
-export * from './resolvers'
 export { camelCase, pascalCase, kebabCase } from './utils'
-
-export default VitePluginComponents
+// export * from './resolvers'

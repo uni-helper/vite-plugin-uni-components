@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AButton: typeof import('ano-ui/components/AButton/AButton.vue')['AButton']
     Book: typeof import('./src/components/book/index.vue')['default']
     ComponentA: typeof import('./src/components/ComponentA.vue')['default']
     ComponentAsync: typeof import('./src/components/ComponentAsync.vue')['default']

@@ -1,13 +1,14 @@
-import path from 'path'
+import { resolve } from 'path'
 import type { UserConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Components from 'vite-plugin-uni-components'
+import { AnoResolver } from 'vite-plugin-uni-components/resolvers'
 import Inspect from 'vite-plugin-inspect'
 
 const config: UserConfig = {
   resolve: {
     alias: {
-      '/~/': `${path.resolve(__dirname, 'src')}/`,
+      '/~/': `${resolve(__dirname, 'src')}/`,
     },
   },
   plugins: [
@@ -17,6 +18,7 @@ const config: UserConfig = {
       directoryAsNamespace: true,
       dts: true,
       globalNamespaces: ['global'],
+      resolvers: [AnoResolver()],
     }),
   ],
   build: {

@@ -1,4 +1,4 @@
-import type { ComponentResolver } from 'vite-plugin-uni-components'
+import type { ComponentResolver } from '../types'
 
 export function AnoResolver(): ComponentResolver {
   return {

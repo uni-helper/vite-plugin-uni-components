@@ -20,7 +20,13 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
-    }
+    },
+    "./resolvers": {
+      "types": "./dist/resolvers.d.ts",
+      "require": "./dist/resolvers.cjs",
+      "import": "./dist/resolvers.mjs"
+    },
+    "./*": "./*"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -39,30 +45,21 @@
     "debug": "^4.3.4",
     "fast-glob": "^3.2.12",
     "local-pkg": "^0.4.3",
-    "magic-string": "^0.29.0",
-    "minimatch": "^6.2.0",
-    "resolve": "^1.22.1",
-    "unplugin": "^1.1.0"
+    "magic-string": "^0.30.0",
+    "minimatch": "^7.1.0",
+    "resolve": "^1.22.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.35.2",
-    "@babel/parser": "^7.20.15",
-    "@babel/types": "^7.20.7",
+    "@babel/parser": "^7.21.1",
+    "@babel/types": "^7.21.0",
     "@types/debug": "^4.1.7",
     "@types/minimatch": "^5.1.2",
     "@types/node": "^18.14.0",
     "@types/resolve": "^1.20.2",
     "bumpp": "^8.2.1",
-    "eslint": "^8.34.0",
     "esno": "^0.16.3",
     "estree-walker": "^3.0.3",
     "pathe": "^1.1.0",
-    "rimraf": "^4.1.2",
-    "rollup": "^2.51.2",
-    "typescript": "^4.9.5",
-    "unbuild": "^1.1.2",
-    "vite": "^4.1.4",
-    "vitest": "^0.28.5",
-    "vue": "3.2.45"
+    "rollup": "^3.17.2"
   }
 }

@@ -1,48 +1,14 @@
 {
-  "name": "vite-plugin-uni-components",
-  "type": "module",
+  "name": "@vite-plugin-uni-components/monorepo",
   "version": "0.0.0",
-  "packageManager": "pnpm@7.2.1",
-  "description": "",
-  "author": "Neil Lee <zguolee@foxmail.com>",
-  "license": "MIT",
-  "funding": "https://github.com/sponsors/zguolee",
-  "homepage": "https://github.com/zguolee/vite-plugin-uni-components#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zguolee/vite-plugin-uni-components.git"
-  },
-  "bugs": "https://github.com/zguolee/vite-plugin-uni-components/issues",
-  "keywords": [],
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
-  "files": [
-    "dist"
-  ],
+  "private": true,
   "scripts": {
     "stub": "pnpm -r --filter=./packages/* --parallel run stub",
     "dev": "pnpm stub",
     "build": "rimraf packages/*/dist && pnpm -r --filter=./packages/* run build && pnpm -r run build-post",
     "release": "bumpp package.json packages/**/package.json",
-    "example:build": "npm -C examples/vite-vue3 run build",
-    "example:dev": "npm -C examples/vite-vue3 run dev",
+    "play:build": "npm -C playground run build",
+    "play:dev": "npm -C playground run dev",
     "prepublishOnly": "nr build",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
@@ -53,6 +19,7 @@
     "@antfu/eslint-config": "^0.35.2",
     "bumpp": "^8.2.1",
     "eslint": "^8.34.0",
+    "rimraf": "^4.1.2",
     "typescript": "^4.9.5",
     "unbuild": "^1.1.2",
     "vite": "^4.1.4",

@@ -7,6 +7,8 @@
     "build": "cross-env DEBUG=vite-plugin-uni-components:* vite build"
   },
   "dependencies": {
+    "ano-ui": "0.6.3",
+    "vue": "^3.2.47"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
@@ -14,9 +16,8 @@
     "cross-env": "^7.0.3",
     "has-pkg": "^0.0.1",
     "typescript": "^4.9.5",
-    "vite": "^4.1.1",
+    "vite": "^4.1.4",
     "vite-plugin-inspect": "^0.7.15",
-    "vite-plugin-uni-components": "workspace:*",
-    "vue-router": "^4.1.6"
+    "vite-plugin-uni-components": "workspace:*"
   }
 }

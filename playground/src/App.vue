@@ -27,6 +27,10 @@ const ComponentAsync = defineAsyncComponent(() => import('./components/Component
     <h1>Async (2)</h1>
     <ComponentAsync />
   </div>
+  <div class="block">
+    <h1>Ano UI (2)</h1>
+    <AButton>Button</AButton>
+  </div>
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 import type { FilterPattern } from '@rollup/pluginutils'
-import type { Awaitable } from 'vitest'
+import type { Awaitable } from '@antfu/utils'
 
 export interface ImportInfoLegacy {
   /**

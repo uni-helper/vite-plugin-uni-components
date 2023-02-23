@@ -79,8 +79,8 @@ export function stringifyImport(info: ImportInfo | string) {
     return `import '${info}'`
   if (!info.as)
     return `import '${info.from}'`
-  else if (info.name)
-    return `import { ${info.name} as ${info.as} } from '${info.from}'`
+  // else if (info.name)
+  //   return `import { ${info.name} as ${info.as} } from '${info.from}'`
   else
     return `import ${info.as} from '${info.from}'`
 }

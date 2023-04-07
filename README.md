@@ -27,6 +27,39 @@ export default defineConfig({
   ],
 })
 ```
+<details>
+
+<summary>Uni-ui</summary>
+<br>
+
+```shell
+pnpm i @dcloudio/uni-ui
+pnpm i -D sass
+```
+
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import Uni from '@dcloudio/vite-plugin-uni'
+import Components from '@uni-helper/vite-plugin-uni-components'
+import { UniUiResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    // make sure put it before `Uni()`
+    Components({
+      resolvers: [
+        UniUiResolver(),
+      ]
+    }),
+    Uni(),
+  ],
+})
+```
+</details>
+<br>
 
 ## Component type prompt
 

@@ -17,5 +17,6 @@ declare module '@vue/runtime-core' {
     ComponentC: typeof import('./src/components/component-c.vue')['default']
     ComponentD: typeof import('./src/components/ComponentD.vue')['default']
     Recursive: typeof import('./src/components/Recursive.vue')['default']
+    UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['default']
   }
 }

@@ -25,6 +25,16 @@ const tree = ref({
     <h1>Ano UI (2)</h1>
     <AButton>Button</AButton>
   </div>
+
+  <div class="block">
+    <h1>Uni UI (2)</h1>
+    <uni-calendar
+      :insert="true"
+      :lunar="true"
+      start-date="2019-3-2"
+      end-date="2019-5-20"
+    />
+  </div>
 </template>
 
 <style scoped>

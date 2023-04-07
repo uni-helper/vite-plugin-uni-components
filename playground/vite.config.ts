@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Uni from '@dcloudio/vite-plugin-uni'
 import Components from '@uni-helper/vite-plugin-uni-components'
-import { UniUiResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
+import { UniUIResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
 import { AnoResolver } from 'ano-ui'
 import Inspect from 'vite-plugin-inspect'
 
@@ -20,7 +20,7 @@ export default defineConfig({
       globalNamespaces: ['global'],
       resolvers: [
         AnoResolver(),
-        UniUiResolver(),
+        UniUIResolver(),
       ],
     }),
     Uni(),

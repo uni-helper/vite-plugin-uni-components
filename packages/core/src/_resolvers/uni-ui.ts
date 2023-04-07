@@ -1,9 +1,7 @@
-import type {
-  ComponentResolver,
-} from '../types'
+import type { ComponentResolver } from '../types'
 import { kebabCase } from '../utils'
 
-export function UniUiResolver(): ComponentResolver {
+export function UniUIResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {

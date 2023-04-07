@@ -2,7 +2,7 @@
   "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
   "version": "0.0.4",
-  "packageManager": "pnpm@7.2.1",
+  "packageManager": "pnpm@8.1.1",
   "description": "",
   "license": "MIT",
   "homepage": "https://github.com/uni-helper/vite-plugin-uni-components#readme",
@@ -51,20 +51,20 @@
     "fast-glob": "^3.2.12",
     "local-pkg": "^0.4.3",
     "magic-string": "^0.30.0",
-    "minimatch": "^7.1.0",
-    "resolve": "^1.22.1"
+    "minimatch": "^8.0.3",
+    "resolve": "^1.22.2"
   },
   "devDependencies": {
-    "@babel/parser": "^7.21.2",
-    "@babel/types": "^7.21.2",
+    "@babel/parser": "^7.21.4",
+    "@babel/types": "^7.21.4",
     "@types/debug": "^4.1.7",
     "@types/minimatch": "^5.1.2",
-    "@types/node": "^18.14.1",
+    "@types/node": "^18.15.11",
     "@types/resolve": "^1.20.2",
-    "bumpp": "^9.0.0",
+    "bumpp": "^9.1.0",
     "esno": "^0.16.3",
     "estree-walker": "^3.0.3",
     "pathe": "^1.1.0",
-    "rollup": "^3.17.2"
+    "rollup": "^3.20.2"
   }
 }

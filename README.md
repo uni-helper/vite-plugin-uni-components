@@ -4,13 +4,13 @@ Forked from [unplugin-vue-components](https://github.com/antfu/unplugin-vue-comp
 
 [![NPM version](https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?color=a1b858&label=)](https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components)
 
-## Install
+## 安装
 
 ```bash
 pnpm i -D @uni-helper/vite-plugin-uni-components
 ```
 
-## Usage
+## 使用
 
 ```ts
 // vite.config.ts
@@ -27,48 +27,22 @@ export default defineConfig({
   ],
 })
 ```
-<details>
 
-<summary>Uni-ui</summary>
-<br>
+## 从 UI 库导入
 
-```shell
-pnpm i @dcloudio/uni-ui
-pnpm i -D sass
-```
+支持的 UI 库：
 
+- [Ano UI](./packages/core/src/_resolvers/ano-ui.ts)
+- [uni-ui](./packages/core/src/_resolvers/uni-ui.ts)
 
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite'
-import Uni from '@dcloudio/vite-plugin-uni'
-import Components from '@uni-helper/vite-plugin-uni-components'
-import { UniUiResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
+## UI 组件类型提示
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    // make sure put it before `Uni()`
-    Components({
-      resolvers: [
-        UniUiResolver(),
-      ]
-    }),
-    Uni(),
-  ],
-})
-```
-</details>
-<br>
-
-## Component type prompt
-
-If you use `pnpm`, please create a `.npmrc` file in root, see [issue](https://github.com/antfu/unplugin-vue-components/issues/389).
+如果你使用 `pnpm` ，请在根目录下创建一个 `.npmrc` 文件，参见[issue](https://github.com/antfu/unplugin-vue-components/issues/389)。
 
 ```
 // .npmrc
 public-hoist-pattern[]=@vue*
-// or 
+// or
 // shamefully-hoist = true
 ```
 

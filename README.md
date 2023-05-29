@@ -1,8 +1,23 @@
 # @uni-helper/vite-plugin-uni-components
 
-Forked from [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and modified to adapt UniApp.
+从[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)派生并修改以适应UniApp。
 
 [![NPM version](https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?color=a1b858&label=)](https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components)
+
+对于第三方组件([dcloudio/uni-ui](https://github.com/dcloudio/uni-ui)，[ano-ui](https://github.com/ano-ui/ano-ui)) 使用 `vite-plugin-uni-components` 会生成 `default` 属性，解决在 H5 端无法正确处理组件的问题。
+
+```diff
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+-   AButton: typeof import('ano-ui/components/AButton/AButton.vue')['AButton']
++   AButton: typeof import('ano-ui/components/AButton/AButton.vue')['default']
+    Book: typeof import('./src/components/book/index.vue')['default']
+    ComponentA: typeof import('./src/components/ComponentA.vue')['default']
+-   UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['UniCalendar']
++   UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['default']
+  }
+}
+```
 
 ## 安装
 

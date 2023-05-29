@@ -1,4 +1,4 @@
-import { existsSync } from 'fs'
+import { existsSync } from 'node:fs'
 import chokidar from 'chokidar'
 import type { Plugin } from 'vite'
 import { shouldTransform } from './utils'

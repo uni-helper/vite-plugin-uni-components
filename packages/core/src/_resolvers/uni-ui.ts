@@ -5,7 +5,8 @@ export function UniUIResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^Uni[A-Z]/)) {
+      // Compatible with @uni-helper/vite-plugin-uni-layouts
+      if (name !== 'UniLayout' && name.match(/^Uni[A-Z]/)) {
         const partialName = kebabCase(name)
         return {
           name,

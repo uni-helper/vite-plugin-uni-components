@@ -18,5 +18,7 @@ declare module '@vue/runtime-core' {
     ComponentD: typeof import('./src/components/ComponentD.vue')['default']
     Recursive: typeof import('./src/components/Recursive.vue')['default']
     UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['default']
+    WdButton: typeof import('wot-design-uni/components/wd-button/wd-button.vue')['default']
+    WdIcon: typeof import('wot-design-uni/components/wd-icon/wd-icon.vue')['default']
   }
 }

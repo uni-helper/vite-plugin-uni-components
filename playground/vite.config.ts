@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Uni from '@dcloudio/vite-plugin-uni'
 import Components from '@uni-helper/vite-plugin-uni-components'
-import { UniUIResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
+import { UniUIResolver, WotResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
 import { AnoResolver } from 'ano-ui'
 import Inspect from 'vite-plugin-inspect'
 
@@ -21,6 +21,7 @@ export default defineConfig({
       resolvers: [
         AnoResolver(),
         UniUIResolver(),
+        WotResolver(),
       ],
     }),
     Uni(),

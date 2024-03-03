@@ -49,6 +49,7 @@ export default defineConfig({
 
 - [Ano UI](./packages/core/src/_resolvers/ano-ui.ts)
 - [uni-ui](./packages/core/src/_resolvers/uni-ui.ts)
+- [wot-design-uni](./packages/core/src/_resolvers/wot-design-uni.ts)
 
 ## UI 组件类型提示
 

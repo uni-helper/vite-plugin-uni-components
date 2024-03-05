@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -180,6 +184,9 @@ importers:
       vue-tsc:
         specifier: ^1.2.0
         version: 1.2.0(typescript@5.0.3)
+      wot-design-uni:
+        specifier: 1.1.3
+        version: 1.1.3(vue@3.2.47)
 
 packages:
 
@@ -4012,6 +4019,7 @@ packages:
 
   /abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
+    deprecated: Use your platform's native atob() and btoa() methods instead
     dev: true
 
   /accepts@1.3.8:
@@ -4942,6 +4950,7 @@ packages:
   /domexception@2.0.1:
     resolution: {integrity: sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==}
     engines: {node: '>=8'}
+    deprecated: Use your platform's native DOMException instead
     dependencies:
       webidl-conversions: 5.0.0
     dev: true
@@ -8327,7 +8336,7 @@ packages:
       rollup: 3.20.2
       typescript: 5.0.3
     optionalDependencies:
-      '@babel/code-frame': 7.18.6
+      '@babel/code-frame': 7.21.4
     dev: true
 
   /rollup@3.20.2:
@@ -9430,6 +9439,15 @@ packages:
   /word-wrap@1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /wot-design-uni@1.1.3(vue@3.2.47):
+    resolution: {integrity: sha512-VFU+826ZQhQnegPuX1hIC0Vup7JamFpB+5VprLDWmP7jif8FD8WwTH9COivvrxS8zyJAvVlcSEpC+p2cPHa+BQ==}
+    engines: {HBuilderX: ^3.8.7}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.2.47
     dev: true
 
   /wrap-ansi@7.0.0:

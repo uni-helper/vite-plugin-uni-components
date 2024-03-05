@@ -35,6 +35,12 @@ const tree = ref({
       end-date="2019-5-20"
     />
   </div>
+  <div class="block">
+    <h1>Wot Design Uni</h1>
+    <wd-button type="success" block>
+      Button
+    </wd-button>
+  </div>
 </template>
 
 <style scoped>

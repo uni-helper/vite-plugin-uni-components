@@ -2,7 +2,7 @@
   "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
   "version": "0.0.8",
-  "packageManager": "pnpm@8.1.1",
+  "packageManager": "pnpm@8.15.5",
   "description": "",
   "license": "MIT",
   "homepage": "https://github.com/uni-helper/vite-plugin-uni-components#readme",

@@ -112,7 +112,7 @@ export function getDeclaration(ctx: Context, filepath: string, originalImports?:
     directive: stringifyDeclarationImports({ ...originalImports?.directive, ...imports.directive }),
   }
 
-  const head = ctx.options.version === 2.7
+  const head = ctx.options.version >= 2.7
     ? `export {}
 
 declare module 'vue' {`

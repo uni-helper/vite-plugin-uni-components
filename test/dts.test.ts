@@ -52,7 +52,7 @@ const _directive_loading = _resolveDirective("loading")`
     await writeFile(
       filepath,
       `
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
     SomeComp: typeof import('test/component/SomeComp')['default']
     TestComp: typeof import('test/component/OldComp')['default']
@@ -132,7 +132,7 @@ import '@vue/runtime-core'
 
 export {}
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
     ComponentA: typeof import('./src/components/ComponentA.vue')['default']
     ComponentB: typeof import('./src/components/ComponentB.vue')['default']
@@ -155,7 +155,7 @@ import '@vue/runtime-core'
 
 export {}
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
     ComponentA: typeof import('./src/components/ComponentA.vue')['default']
     'IMdi:diceD12': typeof import('~icons/mdi/dice-d12')['default']
@@ -178,7 +178,7 @@ import '@vue/runtime-core'
 
 export {}
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
     ComponentA: typeof import('./src/components/ComponentA.vue')['default']
     'IMdi:diceD12': typeof import('~icons/mdi/dice-d12')['default']

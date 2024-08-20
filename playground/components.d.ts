@@ -7,7 +7,7 @@ import '@vue/runtime-core'
 
 export {}
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ano-ui/components/AButton/AButton.vue')['default']
     Book: typeof import('./src/components/book/index.vue')['default']

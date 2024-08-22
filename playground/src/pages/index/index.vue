@@ -41,6 +41,12 @@ const tree = ref({
       Button
     </wd-button>
   </div>
+  <div class="block">
+    <h1>Uv UI</h1>
+    <uv-button type="success" block>
+      Button
+    </uv-button>
+  </div>
 </template>
 
 <style scoped>

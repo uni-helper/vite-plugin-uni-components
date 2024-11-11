@@ -19,6 +19,7 @@ const tree = ref({
     <ComponentD />
     <h3>Recursive Components</h3>
     <recursive :data="tree" />
+    <Book />
   </div>
 
   <div class="block">
@@ -34,6 +35,7 @@ const tree = ref({
       start-date="2019-3-2"
       end-date="2019-5-20"
     />
+    <uni-test>test</uni-test>
   </div>
   <div class="block">
     <h1>Wot Design Uni</h1>

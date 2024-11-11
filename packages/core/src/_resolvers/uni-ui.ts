@@ -1,12 +1,25 @@
+import type { FilterPattern } from '@rollup/pluginutils'
 import type { ComponentResolver } from '../types'
-import { kebabCase } from '../utils'
+import { isExclude, kebabCase } from '../utils'
 
-export function UniUIResolver(): ComponentResolver {
+export interface UniUIResolverOptions {
+  /**
+   * RegExp or string to match component names that will NOT be imported
+   */
+  excludes?: FilterPattern
+}
+
+export function UniUIResolver(
+  options: UniUIResolverOptions = {},
+): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
       // Compatible with @uni-helper/vite-plugin-uni-layouts
-      if (name !== 'UniLayout' && name.match(/^Uni[A-Z]/)) {
+      if (isExclude(name, options.excludes) || name === 'UniLayout')
+        return
+
+      if (name.match(/^Uni[A-Z]/)) {
         const partialName = kebabCase(name)
         return {
           name,

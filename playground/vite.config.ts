@@ -20,10 +20,13 @@ export default defineConfig({
       globalNamespaces: ['global'],
       resolvers: [
         AnoResolver(),
-        UniUIResolver(),
+        UniUIResolver({
+          excludes: 'UniTest',
+        }),
         WotResolver(),
         UvResolver(),
       ],
+      excludeNames: ['Book'],
     }),
     Uni(),
     Inspect(),

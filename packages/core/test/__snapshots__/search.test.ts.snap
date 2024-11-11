@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`search > should with namespace & collapse 1`] = `[]`;
+
+exports[`search > should with namespace 1`] = `[]`;
+
+exports[`search > should work 1`] = `[]`;

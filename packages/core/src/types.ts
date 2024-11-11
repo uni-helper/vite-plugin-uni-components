@@ -63,6 +63,11 @@ export interface Options {
   exclude?: FilterPattern
 
   /**
+   * RegExp or string to match component names that will NOT be imported
+   */
+  excludeNames?: FilterPattern
+
+  /**
    * Relative paths to the directory to search for components.
    * @default 'src/components'
    */

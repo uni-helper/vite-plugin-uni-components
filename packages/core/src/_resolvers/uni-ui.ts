@@ -6,7 +6,7 @@ export interface UniUIResolverOptions {
   /**
    * RegExp or string to match component names that will NOT be imported
    */
-  excludes?: FilterPattern
+  exclude?: FilterPattern
 }
 
 export function UniUIResolver(
@@ -16,7 +16,7 @@ export function UniUIResolver(
     type: 'component',
     resolve: (name: string) => {
       // Compatible with @uni-helper/vite-plugin-uni-layouts
-      if (isExclude(name, options.excludes) || name === 'UniLayout')
+      if (isExclude(name, options.exclude) || name === 'UniLayout')
         return
 
       if (name.match(/^Uni[A-Z]/)) {

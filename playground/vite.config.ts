@@ -21,7 +21,7 @@ export default defineConfig({
       resolvers: [
         AnoResolver(),
         UniUIResolver({
-          excludes: 'UniTest',
+          exclude: 'UniTest',
         }),
         WotResolver(),
         UvResolver(),

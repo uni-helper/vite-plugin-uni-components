@@ -35,6 +35,7 @@ export default defineConfig({
 - [uni-ui](./packages/core/src/_resolvers/uni-ui.ts)
 - [wot-design-uni](./packages/core/src/_resolvers/wot-design-uni.ts)
 - [uv-uni](./packages/core/src/_resolvers/uv-uni.ts)
+- [uview-pro](./packages/core/src/_resolvers/uview-pro.ts)
 
 ## UI 组件类型提示
 

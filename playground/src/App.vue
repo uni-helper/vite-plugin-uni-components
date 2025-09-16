@@ -7,3 +7,8 @@ onShow(() => {
 onHide(() => {
 })
 </script>
+
+<style lang='scss'>
+/* uView Pro 样式变量 */
+@import "uview-pro/index.scss";
+</style>

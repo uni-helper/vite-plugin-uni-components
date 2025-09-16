@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
+import uButton from 'uview-pro/components/u-button/u-button.vue'
 
 const tree = ref({
   label: 'Top Level',
@@ -8,6 +9,7 @@ const tree = ref({
     { label: 'First Level', children: [{ label: 'Second Level' }] },
   ],
 })
+const show = ref(true)
 </script>
 
 <template>
@@ -48,6 +50,14 @@ const tree = ref({
     <uv-button type="success" block>
       Button
     </uv-button>
+  </div>
+  <div class="block">
+    <h1>uView Pro UI</h1>
+    <u-alert-tips :show="show" type="success" title="Alert Tips" description="Alert Tips Message" :close-able="true" @close="show = false" />
+    <u-gap />
+    <u-button type="primary">
+      Button
+    </u-button>
   </div>
 </template>
 

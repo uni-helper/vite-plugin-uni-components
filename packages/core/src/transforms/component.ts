@@ -7,7 +7,7 @@ import type { SupportedTransformer } from '../types'
 
 const debug = Debug('vite-plugin-uni-components:transform:component')
 
-const resolveVue2 = (code: string, s: MagicString) => {
+function resolveVue2(code: string, s: MagicString) {
   const results: ResolveResult[] = []
   for (const match of code.matchAll(/\b(_c|h)\([\s\n\t]*['"](.+?)["']([,)])/g)) {
     const [full, renderFunctionName, matchedName, append] = match
@@ -24,7 +24,7 @@ const resolveVue2 = (code: string, s: MagicString) => {
   return results
 }
 
-const resolveVue3 = (code: string, s: MagicString) => {
+function resolveVue3(code: string, s: MagicString) {
   const results: ResolveResult[] = []
 
   /**

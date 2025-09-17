@@ -16,7 +16,7 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "lint:fix": "nr lint --fix"
+    "lint:fix": "pnpm lint --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.4",

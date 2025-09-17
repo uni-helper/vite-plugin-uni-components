@@ -5,7 +5,7 @@
 <a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/dm/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
 <a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
 
-在 Vite 驱动的 uni-app 上使用基于文件的路由系统。
+从 **unplugin-vue-components** 派生并修改以适应Uniapp。
 
 ## 安装
 

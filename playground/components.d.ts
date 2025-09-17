@@ -15,7 +15,6 @@ declare module 'vue' {
     ComponentD: typeof import('./src/components/ComponentD.vue')['default']
     Recursive: typeof import('./src/components/Recursive.vue')['default']
     UButton: typeof import('uview-pro/components/u-button/u-button.vue')['default']
-    UGap: typeof import('uview-pro/components/u-gap/u-gap.vue')['default']
     UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['default']
     UvButton: typeof import('@climblee/uv-ui/components/uv-button/uv-button.vue')['default']
     UvIcon: typeof import('@climblee/uv-ui/components/uv-icon/uv-icon.vue')['default']

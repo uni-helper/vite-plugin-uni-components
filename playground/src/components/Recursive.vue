@@ -1,10 +1,12 @@
-<script lang="ts">
-export default {
-  name: 'Recursive',
-  props: {
-    data: Object,
-  },
+<script setup lang="ts">
+interface Data {
+  label: string
+  children?: Data[]
 }
+
+defineProps<{
+  data: Data
+}>()
 </script>
 
 <template>

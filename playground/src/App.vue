@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { onHide, onLaunch, onShow } from '@dcloudio/uni-app'
+
 onLaunch(() => {
 })
 onShow(() => {
@@ -7,3 +8,6 @@ onShow(() => {
 onHide(() => {
 })
 </script>
+
+<style lang='scss'>
+</style>

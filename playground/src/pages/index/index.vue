@@ -49,6 +49,12 @@ const tree = ref({
       Button
     </uv-button>
   </div>
+  <div class="block">
+    <h1>uView Pro UI</h1>
+    <u-button type="primary">
+      Button
+    </u-button>
+  </div>
 </template>
 
 <style scoped>

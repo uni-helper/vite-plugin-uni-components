@@ -8,13 +8,14 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ano-ui/components/AButton/AButton.vue')['default']
-    Book: typeof import('./src/components/book/index.vue')['default']
     ComponentA: typeof import('./src/components/ComponentA.vue')['default']
     ComponentAsync: typeof import('./src/components/ComponentAsync.vue')['default']
     ComponentB: typeof import('./src/components/ComponentB.vue')['default']
     ComponentC: typeof import('./src/components/component-c.vue')['default']
     ComponentD: typeof import('./src/components/ComponentD.vue')['default']
     Recursive: typeof import('./src/components/Recursive.vue')['default']
+    UButton: typeof import('uview-pro/components/u-button/u-button.vue')['default']
+    UGap: typeof import('uview-pro/components/u-gap/u-gap.vue')['default']
     UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['default']
     UvButton: typeof import('@climblee/uv-ui/components/uv-button/uv-button.vue')['default']
     UvIcon: typeof import('@climblee/uv-ui/components/uv-icon/uv-icon.vue')['default']

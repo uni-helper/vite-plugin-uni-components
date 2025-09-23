@@ -2,7 +2,7 @@ import type { ComponentResolver } from '../types'
 
 import { kebabCase } from '../utils'
 
-export function uViewProResolver(): ComponentResolver {
+export function uViewProResolver(prefix = 'uview-pro'): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
@@ -10,7 +10,7 @@ export function uViewProResolver(): ComponentResolver {
         const compName = kebabCase(name)
         return {
           name,
-          from: `uview-pro/components/${compName}/${compName}.vue`,
+          from: `${prefix}/components/${compName}/${compName}.vue`,
         }
       }
     },

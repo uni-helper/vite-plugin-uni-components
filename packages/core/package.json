@@ -41,7 +41,8 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "stub": "unbuild --stub"
+    "stub": "unbuild --stub",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@antfu/utils": "^0.7.2",

@@ -13,10 +13,10 @@ pnpm i -D @uni-helper/vite-plugin-uni-components
 ## Usage
 
 ```ts
-// vite.config.ts
-import { defineConfig } from 'vite'
 import Uni from '@dcloudio/vite-plugin-uni'
 import Components from '@uni-helper/vite-plugin-uni-components'
+// vite.config.ts
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -35,7 +35,7 @@ If you use `pnpm`, please create a `.npmrc` file in root, see [issue](https://gi
 ```
 // .npmrc
 public-hoist-pattern[]=@vue*
-// or 
+// or
 // shamefully-hoist = true
 ```
 

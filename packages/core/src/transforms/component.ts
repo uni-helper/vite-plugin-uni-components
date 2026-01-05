@@ -1,15 +1,15 @@
-import Debug from 'debug'
 import type MagicString from 'magic-string'
-import { pascalCase, stringifyComponentImport } from '../utils'
 import type { Context } from '../context'
 import type { ResolveResult } from '../transformer'
 import type { SupportedTransformer } from '../types'
+import Debug from 'debug'
+import { pascalCase, stringifyComponentImport } from '../utils'
 
 const debug = Debug('vite-plugin-uni-components:transform:component')
 
 function resolveVue2(code: string, s: MagicString) {
   const results: ResolveResult[] = []
-  for (const match of code.matchAll(/\b(_c|h)\([\s\n\t]*['"](.+?)["']([,)])/g)) {
+  for (const match of code.matchAll(/\b(_c|h)\(\s*['"](.+?)["']([,)])/g)) {
     const [full, renderFunctionName, matchedName, append] = match
     if (match.index != null && matchedName && !matchedName.startsWith('_')) {
       const start = match.index
@@ -30,7 +30,7 @@ function resolveVue3(code: string, s: MagicString) {
   /**
    * when using some plugin like plugin-vue-jsx, resolveComponent will be imported as resolveComponent1 to avoid duplicate import
    */
-  for (const match of code.matchAll(/_resolveComponent[0-9]*\("(.+?)"\)/g)) {
+  for (const match of code.matchAll(/_?resolveComponent\d*\("(.+?)"\)/g)) {
     const matchedName = match[1]
     if (match.index != null && matchedName && !matchedName.startsWith('_')) {
       const start = match.index

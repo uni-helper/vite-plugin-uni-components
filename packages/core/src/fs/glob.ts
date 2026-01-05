@@ -1,6 +1,6 @@
-import fg from 'fast-glob'
-import Debug from 'debug'
 import type { Context } from '../context'
+import Debug from 'debug'
+import { globSync } from 'tinyglobby'
 
 const debug = Debug('vite-plugin-uni-components:glob')
 
@@ -8,7 +8,7 @@ export function searchComponents(ctx: Context) {
   debug(`started with: [${ctx.options.globs.join(', ')}]`)
   const root = ctx.root
 
-  const files = fg.sync(ctx.options.globs, {
+  const files = globSync(ctx.options.globs, {
     ignore: ['node_modules'],
     onlyFiles: true,
     cwd: root,

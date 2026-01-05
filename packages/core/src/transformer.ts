@@ -1,9 +1,9 @@
+import type { TransformResult } from 'rollup'
+import type { Context } from './context'
+import type { SupportedTransformer, Transformer } from './types'
 import Debug from 'debug'
 import MagicString from 'magic-string'
-import type { TransformResult } from 'rollup'
-import type { SupportedTransformer, Transformer } from './types'
 import { DISABLE_COMMENT } from './constants'
-import type { Context } from './context'
 import transformComponent from './transforms/component'
 import transformDirectives from './transforms/directive'
 
@@ -31,7 +31,7 @@ export default function transformer(ctx: Context, transformer: SupportedTransfor
 
     const result: TransformResult = { code: s.toString() }
     if (ctx.sourcemap)
-      result.map = s.generateMap({ source: id, includeContent: true })
+      result.map = s.generateMap({ source: id, includeContent: true, hires: 'boundary' })
     return result
   }
 }

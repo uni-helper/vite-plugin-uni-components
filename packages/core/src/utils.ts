@@ -1,14 +1,14 @@
+import type { FilterPattern } from '@rollup/pluginutils'
+import type { Context } from './context'
+import type { ComponentInfo, ImportInfo, ImportInfoLegacy, Options, ResolvedOptions } from './types'
 import { parse } from 'node:path'
-import minimatch from 'minimatch'
-import resolve from 'resolve'
+import process from 'node:process'
 import { slash, toArray } from '@antfu/utils'
 import {
   getPackageInfo,
   isPackageExists,
 } from 'local-pkg'
-import type { FilterPattern } from '@rollup/pluginutils'
-import type { ComponentInfo, ImportInfo, ImportInfoLegacy, Options, ResolvedOptions } from './types'
-import type { Context } from './context'
+import { minimatch } from 'minimatch'
 import { DISABLE_COMMENT } from './constants'
 
 export const isSSR = Boolean(process.env.SSR || process.env.SSG || process.env.VITE_SSR || process.env.VITE_SSG)
@@ -144,7 +144,7 @@ export function getNameFromFilePath(filePath: string, options: ResolvedOptions):
     if (globalNamespaces.some((name: string) => folders.includes(name)))
       folders = folders.filter(f => !globalNamespaces.includes(f))
 
-    folders = folders.map(f => f.replace(/[^a-zA-Z0-9\-]/g, ''))
+    folders = folders.map(f => f.replace(/[^a-z0-9\-]/gi, ''))
 
     if (filename.toLowerCase() === 'index')
       filename = ''
@@ -219,12 +219,6 @@ export function shouldTransform(code: string) {
   if (code.includes(DISABLE_COMMENT))
     return false
   return true
-}
-
-export function resolveImportPath(importName: string): string | undefined {
-  return resolve.sync(importName, {
-    preserveSymlinks: false,
-  })
 }
 
 export function isExclude(name: string, exclude?: FilterPattern): boolean {

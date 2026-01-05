@@ -1,5 +1,5 @@
-import type { FilterPattern } from '@rollup/pluginutils'
 import type { Awaitable } from '@antfu/utils'
+import type { FilterPattern } from '@rollup/pluginutils'
 
 export interface ImportInfoLegacy {
   /**
@@ -165,7 +165,7 @@ export interface Options {
 
   /**
    * Only provide types of components in library (registered globally)
-   **/
+   */
   types?: TypeImport[]
 
   /**
@@ -175,7 +175,7 @@ export interface Options {
 }
 
 export type ResolvedOptions = Omit<
-Required<Options>,
+  Required<Options>,
 'resolvers' | 'extensions' | 'dirs' | 'globalComponentsDeclaration'
 > & {
   resolvers: ComponentResolverObject[]

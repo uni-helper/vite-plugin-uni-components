@@ -1,9 +1,9 @@
+import type { Plugin } from 'vite'
+import type { Options } from './types'
 import { existsSync } from 'node:fs'
 import chokidar from 'chokidar'
-import type { Plugin } from 'vite'
-import { shouldTransform } from './utils'
-import type { Options } from './types'
 import { Context } from './context'
+import { shouldTransform } from './utils'
 
 export default function VitePluginComponents(options: Options = {}): Plugin {
   const ctx: Context = new Context(options)
@@ -46,4 +46,4 @@ export default function VitePluginComponents(options: Options = {}): Plugin {
 }
 
 export * from './types'
-export { camelCase, pascalCase, kebabCase } from './utils'
+export { camelCase, kebabCase, pascalCase } from './utils'

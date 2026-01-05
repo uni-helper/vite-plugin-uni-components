@@ -1,7 +1,7 @@
+import type { ComponentResolver, ComponentResolverObject, Options, ResolvedOptions } from './types'
 import { join, resolve } from 'node:path'
 import { slash, toArray } from '@antfu/utils'
 import { getPackageInfoSync, isPackageExists } from 'local-pkg'
-import type { ComponentResolver, ComponentResolverObject, Options, ResolvedOptions } from './types'
 
 export const defaultOptions: Omit<Required<Options>, 'include' | 'exclude' | 'excludeNames' | 'transformer' | 'globs' | 'directives' | 'types' | 'version'> = {
   dirs: 'src/components',
@@ -53,11 +53,11 @@ export function resolveOptions(options: Options, root: string): ResolvedOptions 
   resolved.dts = !resolved.dts
     ? false
     : resolve(
-      root,
-      typeof resolved.dts === 'string'
-        ? resolved.dts
-        : 'components.d.ts',
-    )
+        root,
+        typeof resolved.dts === 'string'
+          ? resolved.dts
+          : 'components.d.ts',
+      )
 
   resolved.types = resolved.types || []
 
@@ -76,7 +76,8 @@ export function resolveOptions(options: Options, root: string): ResolvedOptions 
 }
 
 function getVueVersion(root: string): 2 | 2.7 | 3 {
-  const raw = getPackageInfoSync('vue', { paths: [root] })?.version || '3'
+  // To fixed [mlly] issue: https://github.com/unjs/mlly/issues/158
+  const raw = getPackageInfoSync('vue', { paths: [join(root, '/')] })?.version || '3'
   const version = +(raw.split('.').slice(0, 2).join('.'))
   if (version === 2.7)
     return 2.7

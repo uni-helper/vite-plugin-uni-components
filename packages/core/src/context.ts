@@ -1,15 +1,17 @@
-import { relative } from 'node:path'
+import type { Awaitable } from '@antfu/utils'
 import type fs from 'node:fs'
-import Debug from 'debug'
 import type { UpdatePayload, ViteDevServer } from 'vite'
-import { slash, throttle, toArray } from '@antfu/utils'
 import type { ComponentInfo, Options, ResolvedOptions, Transformer } from './types'
+import { relative } from 'node:path'
+import process from 'node:process'
+import { slash, throttle, toArray } from '@antfu/utils'
+import Debug from 'debug'
 import { DIRECTIVE_IMPORT_PREFIX } from './constants'
-import { getNameFromFilePath, isExclude, matchGlobs, normalizeComponetInfo, parseId, pascalCase, resolveAlias } from './utils'
-import { resolveOptions } from './options'
-import { searchComponents } from './fs/glob'
 import { writeDeclaration } from './declaration'
+import { searchComponents } from './fs/glob'
+import { resolveOptions } from './options'
 import transformer from './transformer'
+import { getNameFromFilePath, isExclude, matchGlobs, normalizeComponetInfo, parseId, pascalCase, resolveAlias } from './utils'
 
 const debug = {
   components: Debug('vite-plugin-uni-components:context:components'),
@@ -264,7 +266,7 @@ export class Context {
     return writeDeclaration(this, this.options.dts, removeUnused)
   }
 
-  generateDeclaration
+  generateDeclaration: () => Awaitable<void> & { cancel: () => void }
 
   get componentNameMap() {
     return this._componentNameMap

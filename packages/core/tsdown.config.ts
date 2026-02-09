@@ -10,9 +10,9 @@ export default defineConfig({
   external: [
     'vite',
     'estree-walker',
-    '@antfu/utils',
   ],
   outputOptions: {
     exports: 'named',
   },
+  inlineOnly: ['@antfu/utils'],
 })

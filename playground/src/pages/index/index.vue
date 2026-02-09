@@ -8,6 +8,16 @@ const tree = ref({
     { label: 'First Level', children: [{ label: 'Second Level' }] },
   ],
 })
+
+const attachmentsItems = ref([
+  {
+    fileType: 'image',
+    name: 'sample-image.jpg',
+    url: 'https://tdesign.gtimg.com/site/avatar.jpg',
+    size: 1024,
+    status: 'success',
+  },
+])
 </script>
 
 <template>
@@ -54,6 +64,16 @@ const tree = ref({
     <u-button type="primary">
       Button
     </u-button>
+  </div>
+  <div class="block">
+    <h1>TDesign Uniapp</h1>
+    <t-button theme="primary" custom-style="margin-bottom: 12px;">
+      Button
+    </t-button>
+    <t-attachments
+      :items="attachmentsItems"
+    />
+    <t-chat-loading animation="gradient" />
   </div>
 </template>
 

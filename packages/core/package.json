@@ -51,7 +51,8 @@
   ],
   "scripts": {
     "dev": "tsdown --watch",
-    "build": "tsdown"
+    "build": "tsdown",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.3.0",

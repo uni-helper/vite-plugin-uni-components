@@ -25,16 +25,12 @@ export function TDesignUniappResolver(
       if (name.match(/^T[A-Z]/)) {
         const pureName = name.slice(1)
         const partialName = pureName === 'QRCode' ? 'qrcode' : kebabCase(pureName)
-        if (isChat(name)) {
-          return {
-            name,
-            from: `@tdesign/uniapp-chat/${partialName}/${partialName}.vue`,
-          }
-        }
+        const packagesName = isChat(name) ? 'uniapp-chat' : 'uniapp'
 
         return {
           name,
-          from: `@tdesign/uniapp/${partialName}/${partialName}.vue`,
+          from: `@tdesign/${packagesName}/${partialName}/${partialName}.vue`,
+          sideEffects: '@tdesign/uniapp/common/style/theme/index.less',
         }
       }
     },

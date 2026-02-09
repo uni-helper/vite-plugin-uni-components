@@ -74,6 +74,7 @@ const attachmentsItems = ref([
       :items="attachmentsItems"
     />
     <t-chat-loading animation="gradient" />
+    <t-qrcode value="https://tdesign.tencent.com/" />
   </div>
 </template>
 

@@ -22,6 +22,7 @@ declare module 'vue' {
     TLoading: typeof import('@tdesign/uniapp/loading/loading.vue')['default']
     TOverlay: typeof import('@tdesign/uniapp/overlay/overlay.vue')['default']
     TPopover: typeof import('@tdesign/uniapp/popover/popover.vue')['default']
+    TQrcode: typeof import('@tdesign/uniapp/qrcode/qrcode.vue')['default']
     TSkeleton: typeof import('@tdesign/uniapp/skeleton/skeleton.vue')['default']
     UButton: typeof import('uview-pro/components/u-button/u-button.vue')['default']
     UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['default']

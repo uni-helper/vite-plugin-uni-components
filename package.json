@@ -4,28 +4,26 @@
   "private": true,
   "packageManager": "pnpm@10.27.0",
   "scripts": {
-    "stub": "pnpm -r --filter=./packages/* --parallel run stub",
-    "dev": "pnpm stub",
-    "build": "pnpm -r --filter=./packages/* run build && pnpm -r run build-post",
+    "dev": "pnpm -r --filter ./packages/* run dev",
+    "build": "pnpm -r --filter ./packages/* run build",
     "release": "bumpp package.json packages/**/package.json",
-    "play:h5": "npm -C playground run dev:h5",
-    "play:build:h5": "npm -C playground run build:h5",
-    "play:mp-weixin": "npm -C playground run dev:mp-weixin",
-    "play:build:mp-weixin": "npm -C playground run build:mp-weixin",
+    "play:h5": "pnpm -C playground run dev",
+    "play:build:h5": "pnpm -C playground run build",
+    "play:mp-weixin": "pnpm -C playground run dev wx",
+    "play:build:mp-weixin": "pnpm -C playground run build wx",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.7.3",
+    "@antfu/eslint-config": "^7.3.0",
     "@babel/parser": "^7.28.5",
     "@babel/types": "^7.28.5",
     "bumpp": "^10.3.2",
-    "eslint": "^9.39.2",
-    "tsdown": "^0.18.4",
+    "eslint": "^10.0.0",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
-    "vite": "^5.4.21",
     "vitest": "^4.0.16"
   }
 }

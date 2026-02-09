@@ -1,5 +1,5 @@
 import type { Awaitable } from '@antfu/utils'
-import type fs from 'node:fs'
+import type { FSWatcher } from 'chokidar'
 import type { UpdatePayload, ViteDevServer } from 'vite'
 import type { ComponentInfo, Options, ResolvedOptions, Transformer } from './types'
 import { relative } from 'node:path'
@@ -40,7 +40,7 @@ export class Context {
     private rawOptions: Options,
   ) {
     this.options = resolveOptions(rawOptions, this.root)
-    this.generateDeclaration = throttle(500, this._generateDeclaration.bind(this), { noLeading: false })
+    this.generateDeclaration = throttle(500, this._generateDeclaration.bind(this), { noLeading: false }) as any
     this.setTransformer(this.options.transformer)
   }
 
@@ -67,10 +67,10 @@ export class Context {
       return
 
     this._server = server
-    this.setupWatcher(server.watcher)
+    this.setupWatcher(server.watcher as unknown as FSWatcher)
   }
 
-  setupWatcher(watcher: fs.FSWatcher) {
+  setupWatcher(watcher: FSWatcher) {
     const { globs } = this.options
 
     watcher

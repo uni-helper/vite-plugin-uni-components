@@ -1,10 +1,10 @@
 import { resolve } from 'node:path'
-import Uni from '@dcloudio/vite-plugin-uni'
+import Uni from '@uni-helper/plugin-uni'
 import Components from '@uni-helper/vite-plugin-uni-components'
-import { TDesignUniappResolver, UniUIResolver, UvResolver, WotResolver, uViewProResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
+import { TDesignUniappResolver, UniUIResolver, uViewProResolver, UvResolver, WotResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'
 import { AnoResolver } from 'ano-ui'
 import { defineConfig } from 'vite'
-import Inspect from 'vite-plugin-inspect'
+// import Inspect from 'vite-plugin-inspect'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,6 +31,6 @@ export default defineConfig({
       excludeNames: ['Book'],
     }),
     Uni(),
-    Inspect(),
+    // Inspect(),
   ],
 })

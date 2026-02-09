@@ -42,7 +42,7 @@ export function parseDeclaration(code: string): DeclarationImports | undefined {
  *
  * `[name, "typeof import(path)[importName]"]`
  */
-function stringifyComponentInfo(filepath: string, { from: path, as: name, name: importName }: ComponentInfo, importPathTransform?: Options['importPathTransform']): [string, string] | undefined {
+function stringifyComponentInfo(filepath: string, { from: path, as: name, name: _importName }: ComponentInfo, importPathTransform?: Options['importPathTransform']): [string, string] | undefined {
   if (!name)
     return undefined
   path = getTransformedPath(path, importPathTransform)

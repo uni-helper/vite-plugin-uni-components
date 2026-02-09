@@ -1,4 +1,5 @@
 export * from './ano-ui'
+export * from './tdesign-uniapp'
 export * from './uni-ui'
 export * from './wot-design-uni'
 export * from './uv-ui'

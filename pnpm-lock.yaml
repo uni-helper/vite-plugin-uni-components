@@ -6790,7 +6790,8 @@ snapshots:
       - ts-node
       - vue
 
-  '@dcloudio/uni-cloud@3.0.0-4080720251210001(postcss@8.5.6)(rollup@4.54.0)(vue@3.5.26(typescript@5.9.3))':
+
+'@dcloudio/uni-cloud@3.0.0-4080720251210001(postcss@8.5.6)(rollup@4.54.0)(vue@3.5.26(typescript@5.9.3))':
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-4080720251210001(postcss@8.5.6)(rollup@4.54.0)(vue@3.5.26(typescript@5.9.3))
       '@dcloudio/uni-i18n': 3.0.0-4080720251210001
@@ -6800,6 +6801,9 @@ snapshots:
     transitivePeerDependencies:
       - '@nuxt/kit'
       - '@vueuse/core'
+      
+      
+  
       - postcss
       - rollup
       - supports-color
@@ -6893,6 +6897,13 @@ snapshots:
       '@dcloudio/uni-mp-vite': 3.0.0-4080720251210001(postcss@8.5.6)(rollup@4.54.0)(vue@3.5.26(typescript@5.9.3))
       '@dcloudio/uni-mp-vue': 3.0.0-4080720251210001
       '@dcloudio/uni-shared': 3.0.0-4080720251210001
+  /@dcloudio/uni-mp-alipay@3.0.0-4070620250821001(postcss@8.5.6)(rollup@3.20.2)(vue@3.5.21):
+    resolution: {integrity: sha512-9jAxrFNQzwewYLqmXnlLdGoucd7KBWxIV+7Rqx63GAjZ9OfuczFlJr3t8TwdskNZoHClEPZv/O31eV94GQqZRA==}
+    dependencies:
+      '@dcloudio/uni-cli-shared': 3.0.0-4070620250821001(postcss@8.5.6)(rollup@3.20.2)(vue@3.5.21)
+      '@dcloudio/uni-mp-vite': 3.0.0-4070620250821001(postcss@8.5.6)(rollup@3.20.2)(vue@3.5.21)
+      '@dcloudio/uni-mp-vue': 3.0.0-4070620250821001
+      '@dcloudio/uni-shared': 3.0.0-4070620250821001
       '@vue/compiler-core': 3.4.21
       '@vue/shared': 3.4.21
     transitivePeerDependencies:

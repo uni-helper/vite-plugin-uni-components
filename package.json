@@ -1,6 +1,6 @@
 {
   "name": "monorepo",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "private": true,
   "packageManager": "pnpm@10.27.0",
   "scripts": {
@@ -12,7 +12,6 @@
     "play:build:h5": "npm -C playground run build:h5",
     "play:mp-weixin": "npm -C playground run dev:mp-weixin",
     "play:build:mp-weixin": "npm -C playground run build:mp-weixin",
-    "prepublishOnly": "nr build",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",

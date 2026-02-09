@@ -1,1 +1,1 @@
-export * from './_resolvers/index'
+export * from './resolvers/index'

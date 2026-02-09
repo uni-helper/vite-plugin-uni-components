@@ -1,16 +1,17 @@
-import { dirname, isAbsolute, relative } from 'node:path'
+import type { Context } from './context'
+import type { ComponentInfo, Options } from './types'
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile as writeFile_ } from 'node:fs/promises'
+import { dirname, isAbsolute, relative } from 'node:path'
 import { notNullish, slash } from '@antfu/utils'
-import type { ComponentInfo, Options } from './types'
-import type { Context } from './context'
 import { getTransformedPath } from './utils'
 
-const multilineCommentsRE = /\/\*.*?\*\//gms
+const multilineCommentsRE = /\/\*.*?\*\//gs
 const singlelineCommentsRE = /\/\/.*$/gm
 
 function extractImports(code: string) {
-  return Object.fromEntries(Array.from(code.matchAll(/['"]?([^\s'"]+)['"]?\s*:\s*(.+?)[,;\n]/g)).map(i => [i[1], i[2]]))
+  // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
+  return Object.fromEntries(Array.from(code.matchAll(/['"]?([^\s'"]+)['"]?\s*:\s*(.+?)[,;\r\n]/g)).map(i => [i[1], i[2]]))
 }
 
 export function parseDeclaration(code: string): DeclarationImports | undefined {
@@ -25,11 +26,11 @@ export function parseDeclaration(code: string): DeclarationImports | undefined {
     component: {},
     directive: {},
   }
-  const componentDeclaration = /export\s+interface\s+GlobalComponents\s*{(.*?)}/s.exec(code)?.[0]
+  const componentDeclaration = /export\s+interface\s+GlobalComponents\s*\{.*?\}/s.exec(code)?.[0]
   if (componentDeclaration)
     imports.component = extractImports(componentDeclaration)
 
-  const directiveDeclaration = /export\s+interface\s+ComponentCustomProperties\s*{(.*?)}/s.exec(code)?.[0]
+  const directiveDeclaration = /export\s+interface\s+GlobalDirectives\s*\{.*?\}/s.exec(code)?.[0]
   if (directiveDeclaration)
     imports.directive = extractImports(directiveDeclaration)
 

@@ -33,4 +33,4 @@ export default defineConfig({
 
 ## 感谢
 
-- [vite-plugin-uni-components](https://github.com/unplugin/unplugin-vue-components)
+- [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)

@@ -19,7 +19,7 @@ export function UniUIResolver(
       if (isExclude(name, options.exclude) || name === 'UniLayout')
         return
 
-      if (name.match(/^Uni[A-Z]/)) {
+      if (/^Uni[A-Z]/.test(name)) {
         const partialName = kebabCase(name)
         return {
           name,

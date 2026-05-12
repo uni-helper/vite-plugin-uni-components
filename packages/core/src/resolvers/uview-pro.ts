@@ -16,7 +16,7 @@ export function uViewProResolver(prefix = 'uview-pro'): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^U[A-Z]/)) {
+      if (/^U[A-Z]/.test(name)) {
         const compName = kebabCase(name)
         return {
           name,

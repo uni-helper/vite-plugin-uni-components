@@ -2,7 +2,7 @@
   "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
   "version": "0.2.10",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.33.4",
   "description": "",
   "license": "MIT",
   "homepage": "https://github.com/uni-helper/vite-plugin-uni-components#readme",
@@ -55,22 +55,22 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.3.0",
-    "chokidar": "^4.0.3",
-    "debug": "^4.4.3",
-    "local-pkg": "^1.1.2",
-    "magic-string": "^0.30.21",
-    "minimatch": "^10.1.1",
-    "tinyglobby": "^0.2.15"
+    "@rollup/pluginutils": "catalog:",
+    "chokidar": "catalog:",
+    "debug": "catalog:",
+    "local-pkg": "catalog:",
+    "magic-string": "catalog:",
+    "minimatch": "catalog:",
+    "tinyglobby": "catalog:"
   },
   "devDependencies": {
-    "@antfu/utils": "^9.3.0",
-    "@types/debug": "^4.1.12",
-    "@types/minimatch": "^5.1.2",
-    "@types/node": "^25.0.10",
-    "estree-walker": "^3.0.3",
-    "pathe": "^2.0.3",
-    "rollup": "^4.54.0",
-    "vite": "5.2.8"
+    "@antfu/utils": "catalog:",
+    "@types/debug": "catalog:",
+    "@types/minimatch": "catalog:",
+    "@types/node": "catalog:",
+    "estree-walker": "catalog:",
+    "pathe": "catalog:",
+    "rollup": "catalog:",
+    "vite": "catalog:"
   }
 }

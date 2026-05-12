@@ -4,7 +4,7 @@ export function AnoResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^A[A-Z]/))
+      if (/^A[A-Z]/.test(name))
         return { name, from: `ano-ui/components/${name}/${name}.vue` }
     },
   }

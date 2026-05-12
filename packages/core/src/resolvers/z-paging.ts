@@ -18,7 +18,7 @@ export function ZPagingResolver(
       if (isExclude(name, options.exclude))
         return
 
-      if (name.match(/^(?!ZPagingRefresh|ZPagingLoadMore)ZPaging(.*)/)) {
+      if (/^(?!ZPagingRefresh|ZPagingLoadMore)ZPaging(.*)/.test(name)) {
         const compName = kebabCase(name)
         return {
           name,

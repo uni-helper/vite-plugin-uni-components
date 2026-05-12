@@ -6,7 +6,7 @@ export function WotResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^Wd[A-Z]/)) {
+      if (/^Wd[A-Z]/.test(name)) {
         const compName = kebabCase(name)
         return {
           name,

@@ -22,7 +22,7 @@ export function TDesignUniappResolver(
       if (isExclude(name, options.exclude))
         return
 
-      if (name.match(/^T[A-Z]/)) {
+      if (/^T[A-Z]/.test(name)) {
         const pureName = name.slice(1)
         const partialName = pureName === 'QRCode' ? 'qrcode' : kebabCase(pureName)
         const packagesName = isChat(name) ? 'uniapp-chat' : 'uniapp'

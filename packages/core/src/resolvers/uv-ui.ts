@@ -6,7 +6,7 @@ export function UvResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^Uv[A-Z]/)) {
+      if (/^Uv[A-Z]/.test(name)) {
         const compName = kebabCase(name)
         return {
           name,

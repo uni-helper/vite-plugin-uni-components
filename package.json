@@ -2,7 +2,7 @@
   "name": "monorepo",
   "version": "0.2.10",
   "private": true,
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.33.4",
   "scripts": {
     "dev": "pnpm -r --filter ./packages/* run dev",
     "build": "pnpm -r --filter ./packages/* run build",
@@ -17,13 +17,13 @@
     "lint:fix": "pnpm lint --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.3.0",
-    "@babel/parser": "^7.28.5",
-    "@babel/types": "^7.28.5",
-    "bumpp": "^10.3.2",
-    "eslint": "^10.0.0",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "@antfu/eslint-config": "catalog:",
+    "@babel/parser": "catalog:",
+    "@babel/types": "catalog:",
+    "bumpp": "catalog:",
+    "eslint": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

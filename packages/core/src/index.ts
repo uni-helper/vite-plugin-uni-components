@@ -15,7 +15,7 @@ export default function VitePluginComponents(options: Options = {}): Plugin {
       ctx.setRoot(config.root)
       ctx.sourcemap = true
 
-      if (config.plugins.find(i => i.name === 'vite-plugin-vue2'))
+      if (config.plugins.some(i => i.name === 'vite-plugin-vue2'))
         ctx.setTransformer('vue2')
 
       if (ctx.options.dts) {

@@ -1,5 +1,5 @@
-import type { Awaitable } from '@antfu/utils'
 import type { FSWatcher } from 'chokidar'
+import type fs from 'node:fs'
 import type { UpdatePayload, ViteDevServer } from 'vite'
 import type { ComponentInfo, Options, ResolvedOptions, Transformer } from './types'
 import { relative } from 'node:path'
@@ -7,41 +7,55 @@ import process from 'node:process'
 import { slash, throttle, toArray } from '@antfu/utils'
 import Debug from 'debug'
 import { DIRECTIVE_IMPORT_PREFIX } from './constants'
-import { writeDeclaration } from './declaration'
+import { writeComponentsJson, writeDeclaration } from './declaration'
 import { searchComponents } from './fs/glob'
 import { resolveOptions } from './options'
 import transformer from './transformer'
-import { getNameFromFilePath, isExclude, matchGlobs, normalizeComponetInfo, parseId, pascalCase, resolveAlias } from './utils'
+import { getNameFromFilePath, isExclude, matchGlobs, normalizeComponentInfo, parseId, pascalCase, resolveAlias } from './utils'
 
 const debug = {
   components: Debug('vite-plugin-uni-components:context:components'),
   search: Debug('vite-plugin-uni-components:context:search'),
   hmr: Debug('vite-plugin-uni-components:context:hmr'),
-  decleration: Debug('vite-plugin-uni-components:decleration'),
+  declaration: Debug('vite-plugin-uni-components:declaration'),
   env: Debug('vite-plugin-uni-components:env'),
 }
 
 export class Context {
   options: ResolvedOptions
-  transformer: Transformer = undefined!
+  transformer: Transformer
 
   private _componentPaths = new Set<string>()
   private _componentNameMap: Record<string, ComponentInfo> = {}
   private _componentUsageMap: Record<string, Set<string>> = {}
   private _componentCustomMap: Record<string, ComponentInfo> = {}
   private _directiveCustomMap: Record<string, ComponentInfo> = {}
+  private _removeUnused = false
   private _server: ViteDevServer | undefined
 
   root = process.cwd()
   sourcemap: string | boolean = true
   alias: Record<string, string> = {}
+  dumpComponentsInfoPath: string | undefined
 
   constructor(
     private rawOptions: Options,
   ) {
     this.options = resolveOptions(rawOptions, this.root)
-    this.generateDeclaration = throttle(500, this._generateDeclaration.bind(this), { noLeading: false }) as any
-    this.setTransformer(this.options.transformer)
+    this.sourcemap = rawOptions.sourcemap ?? true
+    this.generateDeclaration = throttle(500, this._generateDeclaration.bind(this), { noLeading: false })
+    this._removeUnused = this.options.syncMode !== 'append'
+
+    if (this.options.dumpComponentsInfo) {
+      const dumpComponentsInfo = this.options.dumpComponentsInfo === true
+        ? './.components-info.json'
+        : this.options.dumpComponentsInfo ?? false
+
+      this.dumpComponentsInfoPath = dumpComponentsInfo
+      this.generateComponentsJson = throttle(500, this._generateComponentsJson.bind(this), { noLeading: false })
+    }
+
+    this.transformer = transformer(this)
   }
 
   setRoot(root: string) {
@@ -50,11 +64,6 @@ export class Context {
     debug.env('root', root)
     this.root = root
     this.options = resolveOptions(this.rawOptions, this.root)
-  }
-
-  setTransformer(name: Options['transformer']) {
-    debug.env('transformer', name)
-    this.transformer = transformer(this, name || 'vue3')
   }
 
   transform(code: string, id: string) {
@@ -67,30 +76,31 @@ export class Context {
       return
 
     this._server = server
-    this.setupWatcher(server.watcher as unknown as FSWatcher)
+    this._removeUnused = this.options.syncMode === 'overwrite'
+    this.setupWatcher(server.watcher)
   }
 
-  setupWatcher(watcher: FSWatcher) {
+  setupWatcher(watcher: FSWatcher | fs.FSWatcher) {
     const { globs } = this.options
+    this._removeUnused = this.options.syncMode === 'overwrite'
+    // @ts-expect-error fs.FSWatcher
+    watcher.on('unlink', (path) => {
+      if (!matchGlobs(path, globs))
+        return
 
-    watcher
-      .on('unlink', (path) => {
-        if (!matchGlobs(path, globs))
-          return
+      path = slash(path)
+      this.removeComponents(path)
+      this.onUpdate(path)
+    })
+    // @ts-expect-error fs.FSWatcher
+    watcher.on('add', (path) => {
+      if (!matchGlobs(path, globs))
+        return
 
-        path = slash(path)
-        this.removeComponents(path)
-        this.onUpdate(path)
-      })
-    watcher
-      .on('add', (path) => {
-        if (!matchGlobs(path, globs))
-          return
-
-        path = slash(path)
-        this.addComponents(path)
-        this.onUpdate(path)
-      })
+      path = slash(path)
+      this.addComponents(path)
+      this.onUpdate(path)
+    })
   }
 
   /**
@@ -143,6 +153,7 @@ export class Context {
 
   onUpdate(path: string) {
     this.generateDeclaration()
+    this.generateComponentsJson()
 
     if (!this._server)
       return
@@ -177,7 +188,10 @@ export class Context {
     Array
       .from(this._componentPaths)
       .forEach((path) => {
-        const name = pascalCase(getNameFromFilePath(path, this.options))
+        const fileName = getNameFromFilePath(path, this.options)
+        const name = this.options.prefix
+          ? `${pascalCase(this.options.prefix)}${pascalCase(fileName)}`
+          : pascalCase(fileName)
         if (isExclude(name, this.options.excludeNames)) {
           debug.components('exclude', name)
           return
@@ -218,7 +232,7 @@ export class Context {
       else {
         info = {
           as: name,
-          ...normalizeComponetInfo(result),
+          ...normalizeComponentInfo(result),
         }
       }
       if (type === 'component')
@@ -258,15 +272,29 @@ export class Context {
     this._searched = true
   }
 
-  _generateDeclaration(removeUnused = !this._server) {
+  _generateDeclaration(removeUnused = this._removeUnused) {
     if (!this.options.dts)
       return
 
-    debug.decleration('generating')
+    debug.declaration('generating dts')
     return writeDeclaration(this, this.options.dts, removeUnused)
   }
 
-  generateDeclaration: () => Awaitable<void> & { cancel: () => void }
+  generateDeclaration(removeUnused = this._removeUnused): void {
+    this._generateDeclaration(removeUnused)
+  }
+
+  _generateComponentsJson(removeUnused = this._removeUnused) {
+    if (!Object.keys(this._componentNameMap).length)
+      return
+
+    debug.components('generating components-info')
+    return writeComponentsJson(this, removeUnused)
+  }
+
+  generateComponentsJson(removeUnused = this._removeUnused): void {
+    this._generateComponentsJson(removeUnused)
+  }
 
   get componentNameMap() {
     return this._componentNameMap

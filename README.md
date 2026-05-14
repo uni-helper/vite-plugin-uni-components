@@ -5,7 +5,9 @@
 <a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/dm/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
 <a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
 
-从 **unplugin-vue-components** 派生并修改以适应Uniapp。
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/uni-helper/vite-plugin-uni-components)
+
+> 从 **unplugin-vue-components** 派生并修改以适应 uni-app (vue3)。
 
 ## 安装
 
@@ -33,4 +35,4 @@ export default defineConfig({
 
 ## 感谢
 
-- [vite-plugin-uni-components](https://github.com/unplugin/unplugin-vue-components)
+- [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)

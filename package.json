@@ -18,8 +18,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
-    "@babel/parser": "catalog:",
-    "@babel/types": "catalog:",
     "bumpp": "catalog:",
     "eslint": "catalog:",
     "tsdown": "catalog:",

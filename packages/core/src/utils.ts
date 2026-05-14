@@ -8,7 +8,7 @@ import {
   getPackageInfo,
   isPackageExists,
 } from 'local-pkg'
-import { minimatch } from 'minimatch'
+import picomatch from 'picomatch'
 import { DISABLE_COMMENT } from './constants'
 
 export const isSSR = Boolean(process.env.SSR || process.env.SSG || process.env.VITE_SSR || process.env.VITE_SSG)
@@ -59,8 +59,10 @@ export function isEmpty(value: any) {
 
 export function matchGlobs(filepath: string, globs: string[]) {
   for (const glob of globs) {
-    if (minimatch(slash(filepath), glob))
-      return true
+    const isNegated = glob[0] === '!'
+    const match = picomatch(isNegated ? glob.slice(1) : glob)(slash(filepath))
+    if (match)
+      return !isNegated
   }
   return false
 }
@@ -86,7 +88,7 @@ export function stringifyImport(info: ImportInfo | string) {
     return `import ${info.as} from '${info.from}'`
 }
 
-export function normalizeComponetInfo(info: ImportInfo | ImportInfoLegacy | ComponentInfo): ComponentInfo {
+export function normalizeComponentInfo(info: ImportInfo | ImportInfoLegacy | ComponentInfo): ComponentInfo {
   if ('path' in info) {
     return {
       from: info.path,
@@ -159,12 +161,13 @@ export function getNameFromFilePath(filePath: string, options: ResolvedOptions):
         for (const fileOrFolderName of namespaced) {
           let cumulativePrefix = ''
           let didCollapse = false
+          const pascalCasedName = pascalCase(fileOrFolderName)
 
           for (const parentFolder of [...collapsed].reverse()) {
-            cumulativePrefix = `${capitalize(parentFolder)}${cumulativePrefix}`
+            cumulativePrefix = `${parentFolder}${cumulativePrefix}`
 
-            if (pascalCase(fileOrFolderName).startsWith(pascalCase(cumulativePrefix))) {
-              const collapseSamePrefix = fileOrFolderName.slice(cumulativePrefix.length)
+            if (pascalCasedName.startsWith(cumulativePrefix)) {
+              const collapseSamePrefix = pascalCasedName.slice(cumulativePrefix.length)
 
               collapsed.push(collapseSamePrefix)
 
@@ -238,4 +241,10 @@ export function isExclude(name: string, exclude?: FilterPattern): boolean {
     }
   }
   return false
+}
+
+const ESCAPE_PARENTHESES_REGEX = /[()]/g
+
+export function escapeSpecialChars(str: string): string {
+  return str.replace(ESCAPE_PARENTHESES_REGEX, '\\$&')
 }

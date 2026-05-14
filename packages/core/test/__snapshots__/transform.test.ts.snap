@@ -2,15 +2,12 @@
 
 exports[`component and directive as same name > vue2 transform should work 1`] = `
 {
-  "code": "/* vite-plugin-uni-components disabled */import __unplugin_directives_0 from 'test/directive/Loading';
-import __unplugin_components_0 from 'test/component/Loading';
-
+  "code": "/* vite-plugin-uni-components disabled */
     var render = function () {
-this.$options.directives["loading"] = __unplugin_directives_0;
       var _vm = this
       var _h = _vm.$createElement
       var _c = _vm._self._c || _h
-      return _c(__unplugin_components_0, {
+      return _c("loading", {
         directives: [
           { name: "loading", rawName: "v-loading", value: 123, expression: "123" }
         ]
@@ -23,35 +20,14 @@ this.$options.directives["loading"] = __unplugin_directives_0;
 }
 `;
 
-exports[`component and directive as same name > vue2.7 transform should work 1`] = `
-{
-  "code": "/* vite-plugin-uni-components disabled */import __unplugin_directives_0 from 'test/directive/Loading';
-import __unplugin_components_0 from 'test/component/Div';
-
-    import { defineComponent as _defineComponent } from "vue";
-    const _sfc_main = /* @__PURE__ */ _defineComponent({
-      __name: "App",
-      setup(__props) {
-        return { __sfc: true };
-      }
-    });
-    var _sfc_render = function render() {
-this.$options.directives["loading"] = __unplugin_directives_0;
-      var _vm = this, _c = _vm._self._c, _setup = _vm._self._setupProxy;
-      return _c(__unplugin_components_0, { directives: [{ name: "loading", rawName: "v-loading", value: 123, expression: "123" }] }, [], 1);
-    };
-    ",
-}
-`;
-
 exports[`component and directive as same name > vue3 transform should work 1`] = `
 {
-  "code": "/* vite-plugin-uni-components disabled */import __unplugin_directives_0 from 'test/directive/ElInfiniteScroll';
-import __unplugin_components_0 from 'test/component/ElInfiniteScroll';
+  "code": "/* vite-plugin-uni-components disabled */import __vite_plugin_uni_directives_0 from 'test/directive/ElInfiniteScroll';
+import __vite_plugin_uni_components_0 from 'test/component/ElInfiniteScroll';
 
     const render = (_ctx, _cache) => {
-      const _component_el_infinite_scroll = __unplugin_components_0
-      const _directive_el_infinite_scroll = __unplugin_directives_0
+      const _component_el_infinite_scroll = __vite_plugin_uni_components_0
+      const _directive_el_infinite_scroll = __vite_plugin_uni_directives_0
     
       return _withDirectives(
         (_openBlock(),
@@ -63,17 +39,36 @@ import __unplugin_components_0 from 'test/component/ElInfiniteScroll';
 }
 `;
 
+exports[`prefix transform > transform with prefix should work 1`] = `
+{
+  "code": "/* vite-plugin-uni-components disabled */import __vite_plugin_uni_components_2 from 'test/component/test-comp.vue';
+import __vite_plugin_uni_components_1 from 'test/component/test-comp.vue';
+import __vite_plugin_uni_components_0 from 'test/component/test-comp.vue';
+
+    const render = (_ctx, _cache) => {
+      const _component_test_comp = __vite_plugin_uni_components_0
+      const _component_testComp = __vite_plugin_uni_components_1
+      const _component_testComp = __vite_plugin_uni_components_2
+
+      return _withDirectives(
+        (_openBlock(),
+        _createBlock(_component_test_comp, null, null, 512 /* NEED_PATCH */)),
+        _createBlock(_component_testComp, null, null, 512 /* NEED_PATCH */)),
+        _createBlock(_component_TestComp, null, null, 512 /* NEED_PATCH */))
+      )
+    }
+    ",
+}
+`;
+
 exports[`transform > vue2 transform should work 1`] = `
 {
-  "code": "/* vite-plugin-uni-components disabled */import __unplugin_directives_0 from 'test/directive/Loading';
-import __unplugin_components_0 from 'test/component/TestComp';
-
+  "code": "/* vite-plugin-uni-components disabled */
     var render = function () {
-this.$options.directives["loading"] = __unplugin_directives_0;
       var _vm = this
       var _h = _vm.$createElement
       var _c = _vm._self._c || _h
-      return _c(__unplugin_components_0, {
+      return _c("test-comp", {
         directives: [
           { name: "loading", rawName: "v-loading", value: 123, expression: "123" }
         ]
@@ -88,11 +83,10 @@ this.$options.directives["loading"] = __unplugin_directives_0;
 
 exports[`transform > vue2 transform with jsx should work 1`] = `
 {
-  "code": "/* vite-plugin-uni-components disabled */import __unplugin_components_0 from 'test/component/TestComp';
-
+  "code": "/* vite-plugin-uni-components disabled */
     export default {
       render(){
-        return h(__unplugin_components_0, {
+        return h("test-comp", {
         directives: [
           { name: "loading", rawName: "v-loading", value: 123, expression: "123" }
         ]
@@ -103,14 +97,59 @@ exports[`transform > vue2 transform with jsx should work 1`] = `
 }
 `;
 
-exports[`transform > vue3 transform should work 1`] = `
+exports[`transform > vue3 transform should work > no-user-resolve 1`] = `
 {
-  "code": "/* vite-plugin-uni-components disabled */import __unplugin_directives_0 from 'test/directive/Loading';
-import __unplugin_components_0 from 'test/component/TestComp';
+  "code": "/* vite-plugin-uni-components disabled */import __vite_plugin_uni_directives_0 from 'test/directive/Loading';
+import __vite_plugin_uni_components_0 from 'test/component/TestComp';
 
     const render = (_ctx, _cache) => {
-      const _component_test_comp = __unplugin_components_0
-      const _directive_loading = __unplugin_directives_0
+      const _component_test_comp = __vite_plugin_uni_components_0
+      const _directive_loading = __vite_plugin_uni_directives_0
+      
+      const _resolveNoUnderscore = resolveComponent("test-comp")
+
+      return _withDirectives(
+        (_openBlock(),
+        _createBlock(_resolveNoUnderscore, null, null, 512 /* NEED_PATCH */)),
+        _createBlock(_component_test_comp, null, null, 512 /* NEED_PATCH */)),
+        [[_directive_loading, 123]]
+      )
+    }
+    ",
+}
+`;
+
+exports[`transform > vue3 transform should work > with-user-resolve 1`] = `
+{
+  "code": "/* vite-plugin-uni-components disabled */import __vite_plugin_uni_directives_0 from 'test/directive/Loading';
+import __vite_plugin_uni_components_1 from 'test/component/TestComp';
+import __vite_plugin_uni_components_0 from 'test/component/TestComp';
+
+    const render = (_ctx, _cache) => {
+      const _component_test_comp = __vite_plugin_uni_components_0
+      const _directive_loading = __vite_plugin_uni_directives_0
+      
+      const _resolveNoUnderscore = __vite_plugin_uni_components_1
+
+      return _withDirectives(
+        (_openBlock(),
+        _createBlock(_resolveNoUnderscore, null, null, 512 /* NEED_PATCH */)),
+        _createBlock(_component_test_comp, null, null, 512 /* NEED_PATCH */)),
+        [[_directive_loading, 123]]
+      )
+    }
+    ",
+}
+`;
+
+exports[`transform > vue3 transform should work 1`] = `
+{
+  "code": "/* vite-plugin-uni-components disabled */import __vite_plugin_uni_directives_0 from 'test/directive/Loading';
+import __vite_plugin_uni_components_0 from 'test/component/TestComp';
+
+    const render = (_ctx, _cache) => {
+      const _component_test_comp = __vite_plugin_uni_components_0
+      const _directive_loading = __vite_plugin_uni_directives_0
     
       return _withDirectives(
         (_openBlock(),

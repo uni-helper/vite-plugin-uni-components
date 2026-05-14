@@ -1,16 +1,34 @@
 import type { Plugin } from 'vite'
-import type { Options } from './types'
+import type { Options, PublicPluginAPI } from './types'
 import { existsSync } from 'node:fs'
 import chokidar from 'chokidar'
+import { createFilter } from 'vite'
 import { Context } from './context'
-import { shouldTransform } from './utils'
+import { shouldTransform, stringifyComponentImport } from './utils'
 
-export default function VitePluginComponents(options: Options = {}): Plugin {
+export default function VitePluginComponents(options: Options = {}): Plugin & { api: PublicPluginAPI } {
+  const filter = createFilter(
+    options.include || [
+      /\.vue$/,
+      /\.vue\?vue/,
+      /\.vue\.[tj]sx?\?vue/, // for vue-loader with experimentalInlineMatchResource enabled
+      /\.vue\?v=/,
+    ],
+    options.exclude || [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
+  )
   const ctx: Context = new Context(options)
 
   return {
     name: 'vite-plugin-uni-components',
     enforce: 'post',
+    api: {
+      async findComponent(name, filename) {
+        return await ctx.findComponent(name, 'component', filename ? [filename] : [])
+      },
+      stringifyImport(info) {
+        return stringifyComponentImport(info, ctx)
+      },
+    },
     configResolved(config) {
       ctx.setRoot(config.root)
       ctx.sourcemap = true
@@ -24,11 +42,19 @@ export default function VitePluginComponents(options: Options = {}): Plugin {
           ctx.generateDeclaration()
       }
 
+      if (ctx.options.dumpComponentsInfo && ctx.dumpComponentsInfoPath) {
+        if (!existsSync(ctx.dumpComponentsInfoPath))
+          ctx.generateComponentsJson()
+      }
+
       if (config.build.watch && config.command === 'build')
         ctx.setupWatcher(chokidar.watch(ctx.options.globs))
     },
     configureServer(server) {
       ctx.setupViteServer(server)
+    },
+    transformInclude(id) {
+      return filter(id)
     },
     async transform(code, id) {
       if (!shouldTransform(code))
@@ -36,6 +62,7 @@ export default function VitePluginComponents(options: Options = {}): Plugin {
       try {
         const result = await ctx.transform(code, id)
         ctx.generateDeclaration()
+        ctx.generateComponentsJson()
         return result
       }
       catch (e) {

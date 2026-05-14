@@ -54,21 +54,24 @@
     "build": "tsdown",
     "prepublishOnly": "pnpm build"
   },
+  "peerDependencies": {
+    "rollup": "^4.0.0",
+    "vite": "^5.0.0"
+  },
   "dependencies": {
     "@rollup/pluginutils": "catalog:",
     "chokidar": "catalog:",
     "debug": "catalog:",
     "local-pkg": "catalog:",
     "magic-string": "catalog:",
-    "minimatch": "catalog:",
+    "picomatch": "catalog:",
     "tinyglobby": "catalog:"
   },
   "devDependencies": {
     "@antfu/utils": "catalog:",
     "@types/debug": "catalog:",
-    "@types/minimatch": "catalog:",
     "@types/node": "catalog:",
-    "estree-walker": "catalog:",
+    "@types/picomatch": "catalog:",
     "pathe": "catalog:",
     "rollup": "catalog:",
     "vite": "catalog:"

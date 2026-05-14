@@ -64,10 +64,18 @@ describe('search', () => {
         '!src/components/book',
       ],
     })
+
+    // onTestFailed(() => {
+    //   console.error('resolved options')
+    //   console.error(ctx.options)
+    // })
+
     ctx.setRoot(root)
     ctx.searchGlob()
 
-    expect(cleanup(ctx.componentNameMap).map(i => i.as)).not.toEqual(expect.arrayContaining(['Book']))
+    expect(cleanup(ctx.componentNameMap).map(i => i.as))
+      .not
+      .contain('Book')
   })
 
   it('should excludeNames', () => {

@@ -5,8 +5,6 @@ packages:
 catalog:
   '@antfu/eslint-config': ^8.3.0
   '@antfu/utils': ^9.3.0
-  '@babel/parser': ^7.29.3
-  '@babel/types': ^7.29.0
   '@climblee/uv-ui': ^1.1.20
   '@dcloudio/types': ^3.4.31
   '@dcloudio/uni-app': 3.0.0-5000720260410001
@@ -35,7 +33,7 @@ catalog:
   '@tdesign/uniapp': ^0.9.0
   '@tdesign/uniapp-chat': ^0.2.3
   '@types/debug': ^4.1.13
-  '@types/minimatch': ^5.1.2
+  '@types/picomatch': ^4.0.3
   '@types/node': ^25.7.0
   '@uni-helper/plugin-uni': ^0.1.0
   '@uni-helper/unh': ^0.3.1
@@ -47,11 +45,10 @@ catalog:
   chokidar: ^4.0.3
   debug: ^4.4.3
   eslint: ^10.3.0
-  estree-walker: ^3.0.3
   less: ^4.6.4
   local-pkg: ^1.1.2
   magic-string: ^0.30.21
-  minimatch: ^10.2.5
+  picomatch: ^4.0.4
   miniprogram-api-typings: ^5.2.0
   pathe: ^2.0.3
   rollup: ^4.60.3
@@ -62,7 +59,7 @@ catalog:
   uview-pro: ^0.5.18
   vite: ^5.4.21
   vite-plugin-inspect: ^10.3.0
-  vitest: ^4.1.6
+  vitest: ^3.2.4
   vue: ~3.4.38
   vue-i18n: ^9.6.2
   vue-router: ^4.6.4

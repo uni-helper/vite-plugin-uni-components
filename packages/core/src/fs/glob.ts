@@ -7,12 +7,12 @@ const debug = Debug('vite-plugin-uni-components:glob')
 export function searchComponents(ctx: Context) {
   debug(`started with: [${ctx.options.globs.join(', ')}]`)
   const root = ctx.root
-
   const files = globSync(ctx.options.globs, {
-    ignore: ['node_modules'],
+    ignore: ctx.options.globsExclude,
     onlyFiles: true,
     cwd: root,
     absolute: true,
+    expandDirectories: false,
   })
 
   if (!files.length && !ctx.options.resolvers?.length)

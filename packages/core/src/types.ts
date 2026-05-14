@@ -1,5 +1,6 @@
 import type { Awaitable } from '@antfu/utils'
 import type { FilterPattern } from '@rollup/pluginutils'
+import type { TransformResult } from 'rollup'
 
 export interface ImportInfoLegacy {
   /**
@@ -42,15 +43,27 @@ export type ComponentResolver = ComponentResolverFunction | ComponentResolverObj
 
 export type Matcher = (id: string) => boolean | null | undefined
 
-export type Transformer = (code: string, id: string, path: string, query: Record<string, string>) => Awaitable<any | null>
+export type Transformer = (code: string, id: string, path: string, query: Record<string, string>) => Awaitable<TransformResult | null>
 
-export type SupportedTransformer = 'vue3' | 'vue2'
+export interface PublicPluginAPI {
+  /**
+   * Resolves a component using the configured resolvers.
+   */
+  findComponent: (name: string, filename?: string) => Promise<ComponentInfo | undefined>
+  /**
+   * Obtain an import statement for a resolved component.
+   */
+  stringifyImport: (info: ComponentInfo) => string
+}
 
 export interface TypeImport {
   from: string
   names: string[]
 }
 
+/**
+ * Plugin options.
+ */
 export interface Options {
   /**
    * RegExp or glob to match files to be transformed
@@ -82,9 +95,16 @@ export interface Options {
   /**
    * Glob patterns to match file names to be detected as components.
    *
-   * When specified, the `dirs` and `extensions` options will be ignored.
+   * When specified, the `dirs`, `extensions`, and `directoryAsNamespace` options will be ignored.
    */
   globs?: string | string[]
+
+  /**
+   * Negated glob patterns to exclude files from being detected as components.
+   *
+   * @default []
+   */
+  globsExclude?: string | string[]
 
   /**
    * Search for subdirectories
@@ -97,6 +117,11 @@ export interface Options {
    * @default false
    */
   directoryAsNamespace?: boolean
+
+  /**
+   * Generate components with prefix.
+   */
+  prefix?: string
 
   /**
    * Collapse same prefixes (camel-sensitive) of folders and components
@@ -128,11 +153,14 @@ export interface Options {
   importPathTransform?: (path: string) => string | undefined
 
   /**
-   * Transformer to apply
+   * Tranform users' usage of resolveComponent/resolveDirective as well
    *
-   * @default 'vue3'
+   * If disabled, only components inside templates (which compiles to `_resolveComponent` etc.)
+   * will be transformed.
+   *
+   * @default true
    */
-  transformer?: SupportedTransformer
+  transformerUserResolveFunctions?: boolean
 
   /**
    * Generate TypeScript declaration for global components
@@ -146,6 +174,14 @@ export interface Options {
   dts?: boolean | string
 
   /**
+   * Generate TypeScript declaration for global components
+   * For TSX support
+   *
+   * @default true if `@vitejs/plugin-vue-jsx` is installed
+   */
+  dtsTsx?: boolean
+
+  /**
    * Do not emit warning on component overriding
    *
    * @default false
@@ -154,12 +190,7 @@ export interface Options {
 
   /**
    * auto import for directives.
-   *
-   * default: `true` for Vue 3, `false` for Vue 2
-   *
-   * Babel is needed to do the transformation for Vue 2, it's disabled by default for performance concerns.
-   * To install Babel, run: `npm install -D @babel/parser`
-   * @default undefined
+   * @default true
    */
   directives?: boolean
 
@@ -169,9 +200,31 @@ export interface Options {
   types?: TypeImport[]
 
   /**
-   * Vue version of project. It will detect automatically if not specified.
+   * Generate sourcemap for the transformed code.
+   *
+   * @default true
    */
-  version?: 2 | 2.7 | 3
+  sourcemap?: boolean
+
+  /**
+   * Save component information into a JSON file for other tools to consume.
+   * Provide a filepath to save the JSON file.
+   *
+   * When set to `true`, it will save to `./.components-info.json`
+   *
+   * @default false
+   */
+  dumpComponentsInfo?: boolean | string
+
+  /**
+   * The mode for syncing the components.d.ts and .components-info.json file.
+   * - `append`: only append the new components to the existing files.
+   * - `overwrite`: overwrite the whole existing files with the current components.
+   * - `default`: use `append` strategy when using dev server, `overwrite` strategy when using build.
+   *
+   * @default 'default'
+   */
+  syncMode?: 'default' | 'append' | 'overwrite'
 }
 
 export type ResolvedOptions = Omit<
@@ -183,6 +236,8 @@ export type ResolvedOptions = Omit<
   dirs: string[]
   resolvedDirs: string[]
   globs: string[]
+  globsExclude: string[]
   dts: string | false
+  dtsTsx: boolean
   root: string
 }

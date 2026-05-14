@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { Context } from '../src/context'
 import { getDeclaration, parseDeclaration } from '../src/declaration'
 
+const root = path.resolve(__dirname, '../examples/vite-vue3')
 const resolver: ComponentResolver[] = [
   {
     type: 'component',
@@ -31,6 +32,22 @@ const _directive_loading = _resolveDirective("loading")`
     expect(declarations).toMatchSnapshot()
   })
 
+  it('tsx', async () => {
+    const ctx = new Context({
+      resolvers: resolver,
+      directives: true,
+      dts: true,
+      dtsTsx: true,
+    })
+    const code = `
+const _component_test_comp = _resolveComponent("test-comp")
+const _directive_loading = _resolveDirective("loading")`
+    await ctx.transform(code, '')
+
+    const declarations = getDeclaration(ctx, 'test.d.ts')
+    expect(declarations).toMatchSnapshot()
+  })
+
   it('writeDeclaration', async () => {
     const filepath = path.resolve(__dirname, 'tmp/dts-test.d.ts')
     const ctx = new Context({
@@ -47,8 +64,8 @@ const _directive_loading = _resolveDirective("loading")`
     expect(await readFile(filepath, 'utf-8')).matchSnapshot()
   })
 
-  it('writeDeclaration - keep unused', async () => {
-    const filepath = path.resolve(__dirname, 'tmp/dts-keep-unused.d.ts')
+  it.each(['append', 'overwrite'] as const)('writeDeclaration - %s', async (syncMode) => {
+    const filepath = path.resolve(__dirname, 'tmp/dts-test-sync-mode.d.ts')
     await writeFile(
       filepath,
       `
@@ -57,7 +74,7 @@ declare module 'vue' {
     SomeComp: typeof import('test/component/SomeComp')['default']
     TestComp: typeof import('test/component/OldComp')['default']
   }
-  export   interface   ComponentCustomProperties{
+  export   interface   GlobalDirectives{
     // with comment: b
     // a:
     vSome: typeof import('test/directive/Some')['default'];vDirective:typeof import('foo')
@@ -69,18 +86,16 @@ declare module 'vue' {
       resolvers: resolver,
       directives: true,
       dts: filepath,
+      syncMode,
     })
     const code = `
 const _component_test_comp = _resolveComponent("test-comp")
 const _directive_loading = _resolveDirective("loading")`
     await ctx.transform(code, '')
-    await ctx._generateDeclaration(false)
+    await ctx._generateDeclaration()
 
     const contents = await readFile(filepath, 'utf-8')
     expect(contents).matchSnapshot()
-    expect(contents).not.toContain('OldComp')
-    expect(contents).not.toContain('comment')
-    expect(contents).toContain('vSome')
   })
 
   it('components only', async () => {
@@ -89,19 +104,6 @@ const _directive_loading = _resolveDirective("loading")`
       directives: true,
     })
     const code = 'const _component_test_comp = _resolveComponent("test-comp")'
-    await ctx.transform(code, '')
-
-    const declarations = getDeclaration(ctx, 'test.d.ts')
-    expect(declarations).toMatchSnapshot()
-  })
-
-  it('vue 2.7 components only', async () => {
-    const ctx = new Context({
-      resolvers: resolver,
-      directives: true,
-      version: 2.7,
-    })
-    const code = 'const _component_test_comp = _c("test-comp")'
     await ctx.transform(code, '')
 
     const declarations = getDeclaration(ctx, 'test.d.ts')
@@ -179,7 +181,7 @@ declare module 'vue' {
     IMdiLightAlarm: typeof import('~icons/mdi-light/alarm')['default']
   }
 
-  export interface ComponentCustomProperties {
+  export interface GlobalDirectives {
     vDirective: typeof import('foo')
     vLoading: typeof import('test/directive/Loading')['default']
     vSome: typeof import('test/directive/Some')['default']
@@ -188,5 +190,22 @@ declare module 'vue' {
 
     const imports = parseDeclaration(code)
     expect(imports).matchSnapshot()
+  })
+
+  it('generate components with prefix', async () => {
+    const ctx = new Context({
+      resolvers: resolver,
+      directives: true,
+      prefix: 'CustomPrefix',
+      dirs: ['src/components'],
+    })
+    ctx.setRoot(root)
+    const code = `
+const _component_test_comp = _resolveComponent("test-comp")
+const _directive_loading = _resolveDirective("loading")`
+    await ctx.transform(code, '')
+
+    const declarations = getDeclaration(ctx, 'test.d.ts')
+    expect(declarations).toMatchSnapshot()
   })
 })

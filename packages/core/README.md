@@ -1,8 +1,10 @@
 # @uni-helper/vite-plugin-uni-components
 
-Forked from [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and modified to adapt UniApp.
-
 [![NPM version](https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?color=a1b858&label=)](https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components)
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/uni-helper/vite-plugin-uni-components)
+
+Forked from [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and modified to adapt uni-app (vue3).
 
 ## Install
 

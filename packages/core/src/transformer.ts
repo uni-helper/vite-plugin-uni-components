@@ -1,6 +1,6 @@
 import type { TransformResult } from 'rollup'
 import type { Context } from './context'
-import type { SupportedTransformer, Transformer } from './types'
+import type { Transformer } from './types'
 import Debug from 'debug'
 import MagicString from 'magic-string'
 import { DISABLE_COMMENT } from './constants'
@@ -14,7 +14,7 @@ export interface ResolveResult {
   replace: (resolved: string) => void
 }
 
-export default function transformer(ctx: Context, transformer: SupportedTransformer): Transformer {
+export default function transformer(ctx: Context): Transformer {
   return async (code, id, path) => {
     ctx.searchGlob()
 
@@ -23,9 +23,9 @@ export default function transformer(ctx: Context, transformer: SupportedTransfor
 
     const s = new MagicString(code)
 
-    await transformComponent(code, transformer, s, ctx, sfcPath)
+    await transformComponent(code, s, ctx, sfcPath)
     if (ctx.options.directives)
-      await transformDirectives(code, transformer, s, ctx, sfcPath)
+      await transformDirectives(code, s, ctx, sfcPath)
 
     s.prepend(DISABLE_COMMENT)
 

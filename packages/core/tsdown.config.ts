@@ -7,12 +7,7 @@ export default defineConfig({
   ],
   dts: true,
   format: ['esm', 'cjs'],
-  external: [
-    'vite',
-    'estree-walker',
-  ],
   outputOptions: {
     exports: 'named',
   },
-  inlineOnly: ['@antfu/utils'],
 })

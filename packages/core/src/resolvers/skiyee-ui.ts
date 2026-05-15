@@ -5,12 +5,12 @@ export default function SkResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^(?:Sk[A-Z]|sk-[a-z])/)) {
-        let kebabCaseName: string = kebabCase(name)
+      if (/^(?:Sk[A-Z]|sk-[a-z])/.test(name)) {
+        const kebabCaseName: string = kebabCase(name)
 
         return {
           name,
-          from: `@skiyee/uni-ui/components/${kebabCaseName}.vue`
+          from: `@skiyee/uni-ui/components/${kebabCaseName}.vue`,
         }
       }
     },

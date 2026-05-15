@@ -9,10 +9,7 @@ import { shouldTransform, stringifyComponentImport } from './utils'
 export default function VitePluginComponents(options: Options = {}): Plugin & { api: PublicPluginAPI } {
   const filter = createFilter(
     options.include || [
-      /\.vue$/,
-      /\.vue\?vue/,
-      /\.vue\.[tj]sx?\?vue/, // for vue-loader with experimentalInlineMatchResource enabled
-      /\.vue\?v=/,
+      /\.vue($|\?)/,
     ],
     options.exclude || [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
   )
@@ -33,9 +30,6 @@ export default function VitePluginComponents(options: Options = {}): Plugin & { 
       ctx.setRoot(config.root)
       ctx.sourcemap = true
 
-      if (config.plugins.some(i => i.name === 'vite-plugin-vue2'))
-        ctx.setTransformer('vue2')
-
       if (ctx.options.dts) {
         ctx.searchGlob()
         if (!existsSync(ctx.options.dts))
@@ -53,11 +47,8 @@ export default function VitePluginComponents(options: Options = {}): Plugin & { 
     configureServer(server) {
       ctx.setupViteServer(server)
     },
-    transformInclude(id) {
-      return filter(id)
-    },
     async transform(code, id) {
-      if (!shouldTransform(code))
+      if (!shouldTransform(code) || !filter(id))
         return null
       try {
         const result = await ctx.transform(code, id)

@@ -20,7 +20,7 @@ export default async function transformDirective(code: string, s: MagicString, c
     if (!directive)
       continue
 
-    const varName = `__vite_plugin_uni_directives_${no}`
+    const varName = `__unplugin_components_directives_${no}`
     s.prepend(`${stringifyComponentImport({ ...directive, as: varName }, ctx)};\n`)
     no += 1
     replace(varName)

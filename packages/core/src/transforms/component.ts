@@ -45,7 +45,7 @@ export default async function transformComponent(code: string, s: MagicString, c
     ctx.updateUsageMap(sfcPath, [name])
     const component = await ctx.findComponent(name, 'component', [sfcPath])
     if (component) {
-      const varName = `__vite_plugin_uni_components_${no}`
+      const varName = `__unplugin_components_${no}`
       s.prepend(`${stringifyComponentImport({ ...component, as: varName }, ctx)};\n`)
       no += 1
       replace(varName)

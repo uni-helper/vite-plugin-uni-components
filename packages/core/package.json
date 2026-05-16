@@ -1,7 +1,7 @@
 {
   "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "packageManager": "pnpm@10.33.4",
   "description": "",
   "license": "MIT",

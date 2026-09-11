@@ -2,10 +2,22 @@
   "name": "monorepo",
   "version": "0.3.2",
   "private": true,
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@12.3.4",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26",
+      "onFail": "warn"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.3.4",
+      "onFail": "warn"
+    }
+  },
   "scripts": {
-    "dev": "pnpm -r --filter ./packages/* run dev",
-    "build": "pnpm -r --filter ./packages/* run build",
+    "dev": "pnpm -r --filter=./packages/* --parallel run dev",
+    "build": "rimraf packages/*/dist --glob && pnpm -r --filter=./packages/* run build && pnpm -r run build-post",
     "release": "bumpp package.json packages/**/package.json",
     "play:h5": "pnpm -C playground run dev",
     "play:build:h5": "pnpm -C playground run build",
@@ -20,6 +32,7 @@
     "@antfu/eslint-config": "catalog:",
     "bumpp": "catalog:",
     "eslint": "catalog:",
+    "rimraf": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

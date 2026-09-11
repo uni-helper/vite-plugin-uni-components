@@ -2,7 +2,19 @@
   "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
   "version": "0.3.2",
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@12.3.4",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26",
+      "onFail": "warn"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.3.4",
+      "onFail": "warn"
+    }
+  },
   "description": "",
   "license": "MIT",
   "homepage": "https://github.com/uni-helper/vite-plugin-uni-components#readme",
@@ -52,6 +64,7 @@
   "scripts": {
     "dev": "tsdown --watch",
     "build": "tsdown",
+    "build-post": "exit 0",
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {

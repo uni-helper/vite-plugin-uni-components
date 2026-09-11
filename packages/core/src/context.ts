@@ -1,5 +1,7 @@
+import type { Awaitable } from '@antfu/utils'
 import type { FSWatcher } from 'chokidar'
 import type fs from 'node:fs'
+import type { TransformResult } from 'rollup'
 import type { UpdatePayload, ViteDevServer } from 'vite'
 import type { ComponentInfo, Options, ResolvedOptions, Transformer } from './types'
 import { relative } from 'node:path'
@@ -58,7 +60,7 @@ export class Context {
     this.transformer = transformer(this)
   }
 
-  setRoot(root: string) {
+  setRoot(root: string): void {
     if (this.root === root)
       return
     debug.env('root', root)
@@ -66,12 +68,12 @@ export class Context {
     this.options = resolveOptions(this.rawOptions, this.root)
   }
 
-  transform(code: string, id: string) {
+  transform(code: string, id: string): Awaitable<TransformResult | null> {
     const { path, query } = parseId(id)
     return this.transformer(code, id, path, query)
   }
 
-  setupViteServer(server: ViteDevServer) {
+  setupViteServer(server: ViteDevServer): void {
     if (this._server === server)
       return
 
@@ -80,7 +82,7 @@ export class Context {
     this.setupWatcher(server.watcher)
   }
 
-  setupWatcher(watcher: FSWatcher | fs.FSWatcher) {
+  setupWatcher(watcher: FSWatcher | fs.FSWatcher): void {
     const { globs } = this.options
     this._removeUnused = this.options.syncMode === 'overwrite'
     // @ts-expect-error fs.FSWatcher
@@ -108,7 +110,7 @@ export class Context {
    * @param path
    * @param paths paths of used components
    */
-  updateUsageMap(path: string, paths: string[]) {
+  updateUsageMap(path: string, paths: string[]): void {
     if (!this._componentUsageMap[path])
       this._componentUsageMap[path] = new Set()
 
@@ -117,7 +119,7 @@ export class Context {
     })
   }
 
-  addComponents(paths: string | string[]) {
+  addComponents(paths: string | string[]): boolean {
     debug.components('add', paths)
 
     const size = this._componentPaths.size
@@ -129,17 +131,17 @@ export class Context {
     return false
   }
 
-  addCustomComponents(info: ComponentInfo) {
+  addCustomComponents(info: ComponentInfo): void {
     if (info.as)
       this._componentCustomMap[info.as] = info
   }
 
-  addCustomDirectives(info: ComponentInfo) {
+  addCustomDirectives(info: ComponentInfo): void {
     if (info.as)
       this._directiveCustomMap[info.as] = info
   }
 
-  removeComponents(paths: string | string[]) {
+  removeComponents(paths: string | string[]): boolean {
     debug.components('remove', paths)
 
     const size = this._componentPaths.size
@@ -151,7 +153,7 @@ export class Context {
     return false
   }
 
-  onUpdate(path: string) {
+  onUpdate(path: string): void {
     this.generateDeclaration()
     this.generateComponentsJson()
 
@@ -182,7 +184,7 @@ export class Context {
       this._server.ws.send(payload)
   }
 
-  private updateComponentNameMap() {
+  private updateComponentNameMap(): void {
     this._componentNameMap = {}
 
     Array
@@ -245,12 +247,12 @@ export class Context {
     return undefined
   }
 
-  normalizePath(path: string) {
+  normalizePath(path: string): string {
     // @ts-expect-error backward compatibility
     return resolveAlias(path, this.viteConfig?.resolve?.alias || this.viteConfig?.alias || [])
   }
 
-  relative(path: string) {
+  relative(path: string): string {
     if (path.startsWith('/') && !path.startsWith(this.root))
       return slash(path.slice(1))
     return slash(relative(this.root, path))
@@ -263,7 +265,7 @@ export class Context {
    * Will be called multiple times to ensure file loaded,
    * should normally run only once.
    */
-  searchGlob() {
+  searchGlob(): void {
     if (this._searched)
       return
 
@@ -272,7 +274,7 @@ export class Context {
     this._searched = true
   }
 
-  _generateDeclaration(removeUnused = this._removeUnused) {
+  _generateDeclaration(removeUnused = this._removeUnused): Awaitable<void> {
     if (!this.options.dts)
       return
 
@@ -284,7 +286,7 @@ export class Context {
     this._generateDeclaration(removeUnused)
   }
 
-  _generateComponentsJson(removeUnused = this._removeUnused) {
+  _generateComponentsJson(removeUnused = this._removeUnused): Awaitable<void> {
     if (!Object.keys(this._componentNameMap).length)
       return
 
@@ -296,15 +298,15 @@ export class Context {
     this._generateComponentsJson(removeUnused)
   }
 
-  get componentNameMap() {
+  get componentNameMap(): Record<string, ComponentInfo> {
     return this._componentNameMap
   }
 
-  get componentCustomMap() {
+  get componentCustomMap(): Record<string, ComponentInfo> {
     return this._componentCustomMap
   }
 
-  get directiveCustomMap() {
+  get directiveCustomMap(): Record<string, ComponentInfo> {
     return this._directiveCustomMap
   }
 }

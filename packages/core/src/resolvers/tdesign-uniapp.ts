@@ -9,7 +9,7 @@ export interface ResolverOptions {
   exclude?: FilterPattern
 }
 
-function isChat(name: string) {
+function isChat(name: string): boolean {
   return name === 'TAttachments' || name.startsWith('TChat')
 }
 

@@ -7,7 +7,7 @@ import { pascalCase, stringifyComponentImport } from '../utils'
 
 const debug = Debug('vite-plugin-uni-components:transform:directive')
 
-export default async function transformDirective(code: string, s: MagicString, ctx: Context, sfcPath: string) {
+export default async function transformDirective(code: string, s: MagicString, ctx: Context, sfcPath: string): Promise<void> {
   let no = 0
 
   const results = resolveVue3(code, s, ctx.options.transformerUserResolveFunctions)

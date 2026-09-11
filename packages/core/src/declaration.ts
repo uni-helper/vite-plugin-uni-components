@@ -10,7 +10,7 @@ import { getTransformedPath } from './utils'
 const multilineCommentsRE = /\/\*.*?\*\//gs
 const singlelineCommentsRE = /\/\/.*$/gm
 
-function extractImports(code: string) {
+function extractImports(code: string): Record<string, string> {
   // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
   return Object.fromEntries(Array.from(code.matchAll(/['"]?([^\s'"]+)['"]?\s*:\s*(.+?)[,;\r\n]/g)).map(i => [i[1], i[2]]))
 }
@@ -94,7 +94,7 @@ export function getDeclarationImports(ctx: Context, filepath: string): Declarati
   return { component, directive }
 }
 
-export function stringifyDeclarationImports(imports: Record<string, string>) {
+export function stringifyDeclarationImports(imports: Record<string, string>): string[] {
   return Object.entries(imports)
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([name, v]) => {
@@ -104,7 +104,7 @@ export function stringifyDeclarationImports(imports: Record<string, string>) {
     })
 }
 
-export function getDeclaration(ctx: Context, filepath: string, originalImports?: DeclarationImports) {
+export function getDeclaration(ctx: Context, filepath: string, originalImports?: DeclarationImports): string | undefined {
   const imports = getDeclarationImports(ctx, filepath)
   if (!imports)
     return
@@ -154,12 +154,12 @@ declare global {
   return code
 }
 
-async function writeFile(filePath: string, content: string) {
+async function writeFile(filePath: string, content: string): Promise<void> {
   await mkdir(dirname(filePath), { recursive: true })
   return await writeFile_(filePath, content, 'utf-8')
 }
 
-export async function writeDeclaration(ctx: Context, filepath: string, removeUnused = false) {
+export async function writeDeclaration(ctx: Context, filepath: string, removeUnused = false): Promise<void> {
   const originalContent = existsSync(filepath) ? await readFile(filepath, 'utf-8') : ''
   const originalImports = removeUnused ? undefined : parseDeclaration(originalContent)
 
@@ -171,7 +171,7 @@ export async function writeDeclaration(ctx: Context, filepath: string, removeUnu
     await writeFile(filepath, code)
 }
 
-export async function writeComponentsJson(ctx: Context, _removeUnused = false) {
+export async function writeComponentsJson(ctx: Context, _removeUnused = false): Promise<void> {
   if (!ctx.dumpComponentsInfoPath)
     return
 

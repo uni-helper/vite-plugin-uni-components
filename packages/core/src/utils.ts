@@ -18,24 +18,24 @@ export interface ResolveComponent {
   namespace?: string
 }
 
-export function pascalCase(str: string) {
+export function pascalCase(str: string): string {
   return capitalize(camelCase(str))
 }
 
-export function camelCase(str: string) {
+export function camelCase(str: string): string {
   return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
 }
 
-export function kebabCase(key: string) {
+export function kebabCase(key: string): string {
   const result = key.replace(/([A-Z])/g, ' $1').trim()
   return result.split(' ').join('-').toLowerCase()
 }
 
-export function capitalize(str: string) {
+export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-export function parseId(id: string) {
+export function parseId(id: string): { path: string, query: Record<string, string> } {
   const index = id.indexOf('?')
   if (index < 0) {
     return { path: id, query: {} }
@@ -49,7 +49,7 @@ export function parseId(id: string) {
   }
 }
 
-export function isEmpty(value: any) {
+export function isEmpty(value: any): boolean {
   if (!value || value === null || value === undefined || (Array.isArray(value) && Object.keys(value).length <= 0))
     return true
 
@@ -57,7 +57,7 @@ export function isEmpty(value: any) {
     return false
 }
 
-export function matchGlobs(filepath: string, globs: string[]) {
+export function matchGlobs(filepath: string, globs: string[]): boolean {
   for (const glob of globs) {
     const isNegated = glob[0] === '!'
     const match = picomatch(isNegated ? glob.slice(1) : glob)(slash(filepath))
@@ -77,7 +77,7 @@ export function getTransformedPath(path: string, importPathTransform?: Options['
   return path
 }
 
-export function stringifyImport(info: ImportInfo | string) {
+export function stringifyImport(info: ImportInfo | string): string {
   if (typeof info === 'string')
     return `import '${info}'`
   if (!info.as)
@@ -100,7 +100,7 @@ export function normalizeComponentInfo(info: ImportInfo | ImportInfoLegacy | Com
   return info
 }
 
-export function stringifyComponentImport({ as: name, from: path, name: importName, sideEffects }: ComponentInfo, ctx: Context) {
+export function stringifyComponentImport({ as: name, from: path, name: importName, sideEffects }: ComponentInfo, ctx: Context): string {
   path = getTransformedPath(path, ctx.options.importPathTransform)
 
   const imports = [
@@ -192,7 +192,7 @@ export function getNameFromFilePath(filePath: string, options: ResolvedOptions):
   return filename
 }
 
-export function resolveAlias(filepath: string, alias: any) {
+export function resolveAlias(filepath: string, alias: any): string {
   const result = filepath
   if (Array.isArray(alias)) {
     for (const { find, replacement } of alias)
@@ -218,7 +218,7 @@ export async function getPkgVersion(pkgName: string, defaultVersion: string): Pr
   }
 }
 
-export function shouldTransform(code: string) {
+export function shouldTransform(code: string): boolean {
   if (code.includes(DISABLE_COMMENT))
     return false
   return true

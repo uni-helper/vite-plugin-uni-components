@@ -34,7 +34,7 @@ function normalizeResolvers(resolvers: (ComponentResolver | ComponentResolver[])
   return toArray(resolvers).flat().map(r => typeof r === 'function' ? { resolve: r, type: 'component' } : r)
 }
 
-function resolveGlobsExclude(root: string, glob: string) {
+function resolveGlobsExclude(root: string, glob: string): string {
   const excludeReg = /^!/
   return slash(`${excludeReg.test(glob) ? '!' : ''}${resolve(root, glob.replace(excludeReg, ''))}`)
 }

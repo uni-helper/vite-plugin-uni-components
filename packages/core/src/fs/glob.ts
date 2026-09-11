@@ -4,7 +4,7 @@ import { globSync } from 'tinyglobby'
 
 const debug = Debug('vite-plugin-uni-components:glob')
 
-export function searchComponents(ctx: Context) {
+export function searchComponents(ctx: Context): void {
   debug(`started with: [${ctx.options.globs.join(', ')}]`)
   const root = ctx.root
   const files = globSync(ctx.options.globs, {

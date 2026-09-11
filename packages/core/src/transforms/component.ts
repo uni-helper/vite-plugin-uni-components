@@ -10,7 +10,7 @@ function resolveVue3(
   code: string,
   s: MagicString,
   transformerUserResolveFunctions: boolean,
-) {
+): ResolveResult[] {
   const results: ResolveResult[] = []
 
   /**
@@ -34,7 +34,7 @@ function resolveVue3(
   return results
 }
 
-export default async function transformComponent(code: string, s: MagicString, ctx: Context, sfcPath: string) {
+export default async function transformComponent(code: string, s: MagicString, ctx: Context, sfcPath: string): Promise<void> {
   let no = 0
 
   const results = resolveVue3(code, s, ctx.options.transformerUserResolveFunctions)

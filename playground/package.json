@@ -7,7 +7,7 @@
     "dev": "unh dev",
     "build": "unh build",
     "about": "unh info",
-    "type-check": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@dcloudio/uni-app": "catalog:",

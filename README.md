@@ -1,9 +1,9 @@
 <a href="https://uni-helper.js.org/vite-plugin-uni-components"><img src="./banner.svg" alt="banner" width="100%"/></a>
 
 <br >
-<a href="https://github.com/uni-helper/vite-plugin-uni-components/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
-<a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/dm/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
-<a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge"></a>
+<a href="https://github.com/uni-helper/vite-plugin-uni-components/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge" alt="GitHub stars badge"/></a>
+<a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/dm/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge" alt="npm downloads badge"/></a>
+<a href="https://www.npmjs.com/package/@uni-helper/vite-plugin-uni-components"><img src="https://img.shields.io/npm/v/@uni-helper/vite-plugin-uni-components?colorA=005947&colorB=eee&style=for-the-badge" alt="npm version badge"/></a>
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/uni-helper/vite-plugin-uni-components)
 

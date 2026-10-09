@@ -24,7 +24,13 @@
     "url": "git+https://github.com/uni-helper/vite-plugin-uni-components.git"
   },
   "bugs": "https://github.com/uni-helper/vite-plugin-uni-components/issues",
-  "keywords": ["uniapp", "uni-app", "component", "components", "vite-plugin"],
+  "keywords": [
+    "uniapp",
+    "uni-app",
+    "component",
+    "components",
+    "vite-plugin"
+  ],
   "sideEffects": false,
   "exports": {
     "./resolvers": {

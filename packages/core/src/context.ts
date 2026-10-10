@@ -85,7 +85,6 @@ export class Context {
   setupWatcher(watcher: FSWatcher | fs.FSWatcher): void {
     const { globs } = this.options
     this._removeUnused = this.options.syncMode === 'overwrite'
-    // @ts-expect-error fs.FSWatcher
     watcher.on('unlink', (path) => {
       if (!matchGlobs(path, globs))
         return
@@ -94,7 +93,6 @@ export class Context {
       this.removeComponents(path)
       this.onUpdate(path)
     })
-    // @ts-expect-error fs.FSWatcher
     watcher.on('add', (path) => {
       if (!matchGlobs(path, globs))
         return

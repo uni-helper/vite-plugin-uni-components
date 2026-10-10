@@ -12,7 +12,7 @@
     "packageManager": {
       "name": "pnpm",
       "version": "12.10.1",
-      "onFail": "warn"
+      "onFail": "download"
     }
   },
   "scripts": {

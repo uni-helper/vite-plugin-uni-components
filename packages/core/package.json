@@ -12,7 +12,7 @@
     "packageManager": {
       "name": "pnpm",
       "version": "12.10.1",
-      "onFail": "warn"
+      "onFail": "download"
     }
   },
   "description": "适用于 uni-app (Vue3) 的 unplugin-vue-components，按需自动导入组件",

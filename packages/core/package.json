@@ -2,7 +2,7 @@
   "name": "@uni-helper/vite-plugin-uni-components",
   "type": "module",
   "version": "0.3.4",
-  "packageManager": "pnpm@12.10.1",
+  "packageManager": "pnpm@12.16.1",
   "devEngines": {
     "runtime": {
       "name": "node",
@@ -11,8 +11,8 @@
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "12.10.1",
-      "onFail": "download"
+      "version": "12.16.1",
+      "onFail": "warn"
     }
   },
   "description": "适用于 uni-app (Vue3) 的 unplugin-vue-components，按需自动导入组件",

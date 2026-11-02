@@ -23,7 +23,9 @@ export function pascalCase(str: string): string {
 }
 
 export function camelCase(str: string): string {
-  return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
+  return str.replace(/-(\w)/g, (_, c) => (c
+    ? c.toUpperCase()
+    : ''))
 }
 
 export function kebabCase(key: string): string {
@@ -60,7 +62,9 @@ export function isEmpty(value: any): boolean {
 export function matchGlobs(filepath: string, globs: string[]): boolean {
   for (const glob of globs) {
     const isNegated = glob[0] === '!'
-    const match = picomatch(isNegated ? glob.slice(1) : glob)(slash(filepath))
+    const match = picomatch(isNegated
+      ? glob.slice(1)
+      : glob)(slash(filepath))
     if (match)
       return !isNegated
   }

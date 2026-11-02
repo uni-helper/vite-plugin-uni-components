@@ -20,7 +20,9 @@ export default function VitePluginComponents(options: Options = {}): Plugin & { 
     enforce: 'post',
     api: {
       async findComponent(name, filename) {
-        return await ctx.findComponent(name, 'component', filename ? [filename] : [])
+        return await ctx.findComponent(name, 'component', filename
+          ? [filename]
+          : [])
       },
       stringifyImport(info) {
         return stringifyComponentImport(info, ctx)

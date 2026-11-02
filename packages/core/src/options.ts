@@ -31,12 +31,16 @@ export const defaultOptions: Omit<Required<Options>, 'include' | 'exclude' | 'ex
 }
 
 function normalizeResolvers(resolvers: (ComponentResolver | ComponentResolver[])[]): ComponentResolverObject[] {
-  return toArray(resolvers).flat().map(r => typeof r === 'function' ? { resolve: r, type: 'component' } : r)
+  return toArray(resolvers).flat().map(r => typeof r === 'function'
+    ? { resolve: r, type: 'component' }
+    : r)
 }
 
 function resolveGlobsExclude(root: string, glob: string): string {
   const excludeReg = /^!/
-  return slash(`${excludeReg.test(glob) ? '!' : ''}${resolve(root, glob.replace(excludeReg, ''))}`)
+  return slash(`${excludeReg.test(glob)
+    ? '!'
+    : ''}${resolve(root, glob.replace(excludeReg, ''))}`)
 }
 
 export function resolveOptions(options: Options, root: string): ResolvedOptions {

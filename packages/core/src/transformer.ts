@@ -29,7 +29,9 @@ export default function transformer(ctx: Context): Transformer {
 
     s.prepend(DISABLE_COMMENT)
 
-    const result: TransformResult = { code: s.toString() }
+    const result: TransformResult = {
+      code: s.toString(),
+    }
     if (ctx.sourcemap)
       result.map = s.generateMap({ source: id, includeContent: true, hires: 'boundary' })
     return result

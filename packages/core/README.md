@@ -59,7 +59,9 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     Components({
-      resolvers: [UniUIResolver()],
+      resolvers: [
+        UniUIResolver()
+      ],
     }),
     Uni(),
   ],

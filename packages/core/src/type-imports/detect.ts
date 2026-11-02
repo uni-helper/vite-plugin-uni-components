@@ -5,7 +5,9 @@ import { TypeImportPresets } from '.'
 
 export function detectTypeImports(): TypeImport[] {
   return TypeImportPresets
-    .map(i => isPackageExists(i.from) ? i : undefined)
+    .map(i => isPackageExists(i.from)
+      ? i
+      : undefined)
     .filter(notNullish)
 }
 

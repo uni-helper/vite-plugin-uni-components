@@ -219,7 +219,9 @@ export class Context {
       if (resolver.type !== type)
         continue
 
-      const result = await resolver.resolve(type === 'directive' ? name.slice(DIRECTIVE_IMPORT_PREFIX.length) : name)
+      const result = await resolver.resolve(type === 'directive'
+        ? name.slice(DIRECTIVE_IMPORT_PREFIX.length)
+        : name)
       if (!result)
         continue
 

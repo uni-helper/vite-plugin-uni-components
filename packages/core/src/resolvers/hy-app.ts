@@ -6,7 +6,7 @@ export function HyAppResolver(): ComponentResolver {
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.match(/^Hy[A-Z]/)) {
+      if (/^Hy[A-Z]/.test(name)) {
         const compName = kebabCase(name)
         return {
           name,

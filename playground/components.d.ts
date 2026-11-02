@@ -23,15 +23,10 @@ declare module 'vue' {
     TAttachments: typeof import('@tdesign/uniapp-chat/attachments/attachments.vue')['TAttachments']
     TButton: typeof import('@tdesign/uniapp/button/button.vue')['TButton']
     TChatLoading: typeof import('@tdesign/uniapp-chat/chat-loading/chat-loading.vue')['TChatLoading']
-    TIcon: typeof import('@tdesign/uniapp/icon/icon.vue')['TIcon']
-    TLoading: typeof import('@tdesign/uniapp/loading/loading.vue')['TLoading']
     TQrcode: typeof import('@tdesign/uniapp/qrcode/qrcode.vue')['TQrcode']
-    TSkeleton: typeof import('@tdesign/uniapp/skeleton/skeleton.vue')['TSkeleton']
     UButton: typeof import('uview-pro/components/u-button/u-button.vue')['UButton']
     UniCalendar: typeof import('@dcloudio/uni-ui/lib/uni-calendar/uni-calendar.vue')['UniCalendar']
     UvButton: typeof import('@climblee/uv-ui/components/uv-button/uv-button.vue')['UvButton']
-    UvIcon: typeof import('@climblee/uv-ui/components/uv-icon/uv-icon.vue')['UvIcon']
-    UvLoadingIcon: typeof import('@climblee/uv-ui/components/uv-loading-icon/uv-loading-icon.vue')['UvLoadingIcon']
     WdButton: typeof import('wot-design-uni/components/wd-button/wd-button.vue')['WdButton']
   }
 }

@@ -5,7 +5,7 @@
 ## 前置条件
 
 - Node 26（见 `.node-version` 与根 `package.json` 的 `devEngines.runtime`；CI 还会在 Node 22、24 上测试）
-- pnpm 12.10.1（见根 `package.json` 的 `packageManager` 与 `devEngines.packageManager`）
+- pnpm 12.16.1（见根 `package.json` 的 `packageManager` 与 `devEngines.packageManager`）
 
 ## 仓库结构
 

@@ -5,7 +5,7 @@ uni-helper 的 uni-app (Vue3) 组件按需自动导入插件，Fork 自 unplugin
 ## Project
 
 - 语言/运行时：TypeScript strict（根 `tsconfig.json`，`moduleResolution: bundler`；`playground` 不参与根 typecheck）。Node 26 是开发机 pin（`.node-version` + `devEngines.runtime`，`onFail: warn`，只约束开发者，不发布 `engines` 字段；CI 矩阵另测 Node 22/24）
-- 包管理：pnpm 12.10.1（`packageManager` + `devEngines.packageManager`）。依赖版本统一放在 `pnpm-workspace.yaml` 的 `catalog:`，各 manifest 里写 `catalog:` 占位
+- 包管理：pnpm 12.16.1（`packageManager` + `devEngines.packageManager`）。依赖版本统一放在 `pnpm-workspace.yaml` 的 `catalog:`，各 manifest 里写 `catalog:` 占位
 - 构建：tsdown（esm + cjs + dts），产物在 `packages/core/dist/`（gitignore，不入库）
 - 测试：vitest，快照断言，直接导入 `src/`，无需先构建
 - Lint：@antfu/eslint-config（`lib` 预设），检查和格式化都由 eslint 承担，无 prettier

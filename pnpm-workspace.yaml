@@ -17,7 +17,7 @@ allowBuilds:
   esbuild: true
 
 catalog:
-  '@antfu/eslint-config': ^9.5.1
+  '@antfu/eslint-config': ^10.0.0
   '@antfu/utils': ^9.3.0
   '@climblee/uv-ui': ^1.1.20
   '@dcloudio/types': ^3.4.32
@@ -44,13 +44,13 @@ catalog:
   '@dcloudio/vite-plugin-uni': 3.0.0-5000720260410001
   '@mini-types/alipay': ^3.0.14
   '@rollup/pluginutils': ^5.5.1
-  '@tdesign/uniapp': ^0.10.3
-  '@tdesign/uniapp-chat': ^0.3.0
+  '@tdesign/uniapp': ^1.0.0
+  '@tdesign/uniapp-chat': ^1.0.0
   '@types/debug': ^4.1.13
   '@types/node': ^26.6.6
   '@types/picomatch': ^4.0.3
   '@uni-helper/plugin-uni': ^0.1.0
-  '@uni-helper/unh': ^0.4.1
+  '@uni-helper/unh': ^0.5.0
   '@uni-helper/uni-types': ^1.4.1
   '@vue/runtime-core': ~3.4.38
   '@vue/tsconfig': ^0.9.1
